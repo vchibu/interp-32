@@ -1,0 +1,34 @@
+project:
+  name: speech-accent-wav2vec2-analysis
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  processed_audio_dir: data/processed/audio
+  manifest_dir: data/manifests
+  output_dir: outputs
+  feature_dir: outputs/features
+  analysis_dir: outputs/analysis
+
+dataset:
+  transcript_name: please_call_stella
+  transcript_text: "Please call Stella. Ask her to bring these things with her from the store: Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob. We also need a small plastic snake and a big toy frog for the kids. She can scoop these things into three red bags, and we will go meet her Wednesday at the train station."
+  label_field: native_language
+  min_examples_per_label: 20
+
+audio:
+  target_sample_rate: 16000
+  mono: true
+  normalize_peak: true
+
+model:
+  model_name: facebook/wav2vec2-base
+  device: auto
+  pooling: mean
+  output_hidden_states: true
+  save_frame_level: false
+
+analysis:
+  random_seed: 42
+  probe_test_size: 0.2
+  reducer: umap
