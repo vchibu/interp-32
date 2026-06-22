@@ -19,6 +19,7 @@ def summarize_top_accent_groups(
     group_field: str = "native_language",
     english_residence_field: str = "english_residence",
     top_n: int = 20,
+    min_total_speakers: int | None = None,
 ) -> pd.DataFrame:
     """Return the largest accent groups and how many have no English residence recorded."""
     required_columns = {group_field, english_residence_field}
@@ -42,7 +43,13 @@ def summarize_top_accent_groups(
         )
         .reset_index()
         .rename(columns={group_field: "accent_group"})
-        .sort_values(["total_speakers", "no_english_residence_speakers", "accent_group"], ascending=[False, False, True])
+    )
+
+    if min_total_speakers is not None:
+        summary = summary[summary["total_speakers"] >= min_total_speakers].copy()
+
+    summary = (
+        summary.sort_values(["total_speakers", "no_english_residence_speakers", "accent_group"], ascending=[False, False, True])
         .head(top_n)
         .reset_index(drop=True)
     )

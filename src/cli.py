@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.analysis.accent_country_breakdown import save_breakdown, summarize_accent_groups_by_country
 from src.analysis.dataset_summary import save_summary, summarize_top_accent_groups
 from src.analysis.dimension_stats import rank_dimensions_by_mi
 from src.analysis.layerwise_probes import run_probe_analysis
@@ -48,6 +49,10 @@ def main() -> None:
     summary_parser = subparsers.add_parser("summarize-accent-groups", help="Summarize largest accent groups from raw metadata")
     summary_parser.add_argument("--config", default="configs/base.yaml")
     summary_parser.add_argument("--top-n", type=int, default=20)
+    summary_parser.add_argument("--min-total-speakers", type=int, default=None, help="Only keep groups with at least this many total speakers")
+
+    country_parser = subparsers.add_parser("summarize-accent-countries", help="Summarize accent groups by country of origin from the manifest")
+    country_parser.add_argument("--config", default="configs/base.yaml")
 
     args = parser.parse_args()
     config = load_config(args.config)
@@ -137,11 +142,30 @@ def main() -> None:
         analysis_dir = Path(config["paths"]["analysis_dir"])
         analysis_dir.mkdir(parents=True, exist_ok=True)
         metadata = _read_csv(metadata_path)
-        summary = summarize_top_accent_groups(metadata=metadata, top_n=args.top_n)
-        output_path = analysis_dir / f"top_{args.top_n}_accent_groups.csv"
+        summary = summarize_top_accent_groups(
+            metadata=metadata,
+            top_n=args.top_n,
+            min_total_speakers=args.min_total_speakers,
+        )
+        if args.min_total_speakers is not None:
+            output_name = f"accent_groups_min_{args.min_total_speakers}.csv"
+        else:
+            output_name = f"top_{args.top_n}_accent_groups.csv"
+        output_path = analysis_dir / output_name
         save_summary(summary, output_path)
         print(summary.to_string(index=False))
         print(f"Summary written to {output_path}")
+
+    if args.command == "summarize-accent-countries":
+        input_path = Path(config["paths"]["raw_dir"]) / "accent_archive_metadata.csv"
+        accent_groups_path = Path(config["paths"]["analysis_dir"]) / "accent_groups_min_10.csv"
+        output_path = Path(config["paths"]["analysis_dir"]) / "accent_group_country_breakdown.csv"
+        metadata = _read_csv(input_path)
+        accent_groups = _read_csv(accent_groups_path)["accent_group"].dropna().astype(str).str.strip().tolist()
+        breakdown = summarize_accent_groups_by_country(metadata=metadata, allowed_groups=accent_groups)
+        save_breakdown(breakdown, output_path)
+        print(breakdown.to_string(index=False))
+        print(f"Country breakdown written to {output_path}")
 
 
 if __name__ == "__main__":
