@@ -1,0 +1,248 @@
+accent_country_label,accent,country_of_birth,n_speakers,n_recordings,n_female,n_male,n_balanced_female_male_pairs,english_speaking_birth_country,n_unknown_residence_years,median_english_residence_years,max_english_residence_years
+english__usa,english,usa,432,432,219,213,213,True,0,27.0,93.0
+chinese__china,chinese,china,106,106,73,33,33,False,0,0.75,2.0
+english__uk,english,uk,71,71,24,47,24,True,0,30.0,72.0
+arabic__saudi arabia,arabic,saudi arabia,55,55,22,33,22,False,0,0.9,2.0
+english__australia,english,australia,43,43,20,23,20,True,0,24.0,60.0
+english__canada,english,canada,46,46,18,28,18,True,0,26.5,70.0
+korean__south korea,korean,south korea,39,39,23,16,16,False,0,0.7,2.0
+russian__russia,russian,russia,33,33,16,17,16,False,0,0.0,2.0
+portuguese__brazil,portuguese,brazil,31,31,14,17,14,False,0,0.2,2.0
+french__france,french,france,22,22,11,11,11,False,0,0.35,2.0
+turkish__turkey,turkish,turkey,29,29,10,19,10,False,0,0.2,1.2
+polish__poland,polish,poland,28,28,10,18,10,False,0,0.0,2.0
+cantonese__china,cantonese,china,22,22,12,10,10,False,0,0.2,2.0
+german__germany,german,germany,22,22,10,12,10,False,0,0.2,2.0
+japanese__japan,japanese,japan,16,16,8,8,8,False,0,0.25,2.0
+dutch__belgium,dutch,belgium,27,27,20,7,7,False,0,0.0,1.0
+macedonian__macedonia,macedonian,macedonia,24,24,17,7,7,False,0,0.0,2.0
+italian__italy,italian,italy,23,23,7,16,7,False,0,0.1,1.0
+hindi__india,hindi,india,18,18,7,11,7,False,0,0.55,2.0
+thai__thailand,thai,thailand,15,15,9,6,6,False,0,0.5,2.0
+chinese__taiwan,chinese,taiwan,14,14,6,8,6,False,0,0.375,2.0
+tajiki__tajikistan,tajiki,tajikistan,14,14,8,6,6,False,0,0.0,0.1
+estonian__estonia,estonian,estonia,16,16,11,5,5,False,0,0.05,2.0
+french__canada,french,canada,14,14,5,9,5,True,0,25.5,64.0
+dutch__netherlands,dutch,netherlands,13,13,5,8,5,False,0,0.1,1.5
+farsi__iran,farsi,iran,11,11,6,5,5,False,0,1.5,2.0
+spanish__colombia,spanish,colombia,11,11,6,5,5,False,0,1.0,2.0
+swedish__sweden,swedish,sweden,14,14,4,10,4,False,0,0.0,1.0
+bosnian__bosnia and herzegovina,bosnian,bosnia and herzegovina,8,8,4,4,4,False,0,1.3,2.0
+english__new zealand,english,new zealand,8,8,4,4,4,True,0,23.0,44.0
+miskito__nicaragua,miskito,nicaragua,11,11,3,8,3,False,0,0.0,0.2
+vietnamese__vietnam,vietnamese,vietnam,11,11,3,8,3,False,0,1.5,2.0
+serbian__serbia,serbian,serbia,10,10,3,7,3,False,0,1.15,2.0
+spanish__spain,spanish,spain,10,10,3,7,3,False,0,0.175,0.8
+gujarati__india,gujarati,india,8,8,3,5,3,False,0,0.75,2.0
+arabic__morocco,arabic,morocco,7,7,4,3,3,False,0,0.3,2.0
+greek__greece,greek,greece,7,7,3,4,3,False,0,0.25,2.0
+hebrew__israel,hebrew,israel,7,7,3,4,3,False,0,0.0,1.5
+romanian__romania,romanian,romania,7,7,3,4,3,False,0,1.0,2.0
+amharic__ethiopia,amharic,ethiopia,6,6,3,3,3,False,0,1.5,2.0
+arabic__united arab emirates,arabic,united arab emirates,6,6,3,3,3,False,0,0.3,1.0
+english__ireland,english,ireland,12,12,2,10,2,True,0,22.0,61.0
+finnish__finland,finnish,finland,10,10,8,2,2,False,0,0.15000000000000002,1.2
+telugu__india,telugu,india,10,10,2,8,2,False,0,0.2,2.0
+ukrainian__ukraine,ukrainian,ukraine,8,8,2,6,2,False,0,0.1,2.0
+spanish__argentina,spanish,argentina,7,7,2,5,2,False,0,0.0,1.0
+marathi__india,marathi,india,6,6,2,4,2,False,0,0.25,1.0
+czech__czech republic,czech,czech republic,5,5,3,2,2,False,0,0.5,1.5
+norwegian__norway,norwegian,norway,5,5,2,3,2,False,0,0.3,0.8
+swiss german__switzerland,swiss german,switzerland,5,5,3,2,2,False,0,1.0,2.0
+bahasa indonesia__indonesia,bahasa indonesia,indonesia,4,4,2,2,2,False,0,0.8500000000000001,1.2
+bengali__india,bengali,india,4,4,2,2,2,False,0,0.5,2.0
+kazakh__kazakhstan,kazakh,kazakhstan,4,4,2,2,2,False,0,0.35,0.5
+spanish__mexico,spanish,mexico,8,8,1,7,1,False,0,0.0,2.0
+spanish__venezuela,spanish,venezuela,8,8,1,7,1,False,0,0.35,2.0
+kannada__india,kannada,india,7,7,1,6,1,False,0,0.3,2.0
+afrikaans__south africa,afrikaans,south africa,6,6,1,5,1,True,0,12.5,23.0
+arabic__usa,arabic,usa,5,5,4,1,1,True,0,8.0,12.0
+spanish__chile,spanish,chile,5,5,1,4,1,False,0,0.4,1.0
+tamil__india,tamil,india,5,5,4,1,1,False,0,0.2,2.0
+bamanankan__mali,bamanankan,mali,4,4,3,1,1,False,0,0.7,2.0
+danish__denmark,danish,denmark,4,4,1,3,1,False,0,0.0,0.25
+english__south africa,english,south africa,4,4,1,3,1,True,0,32.0,60.0
+flemish__belgium,flemish,belgium,4,4,3,1,1,False,0,0.0,0.0
+german__austria,german,austria,4,4,3,1,1,False,0,0.125,1.2
+khalkha mongol__mongolia,khalkha mongol,mongolia,4,4,1,3,1,False,0,0.5800000000000001,1.0
+russian__ukraine,russian,ukraine,4,4,3,1,1,False,0,0.75,2.0
+spanish__nicaragua,spanish,nicaragua,4,4,1,3,1,False,0,0.0,0.0
+spanish__peru,spanish,peru,4,4,3,1,1,False,0,0.65,1.5
+tagalog__philippines,tagalog,philippines,4,4,3,1,1,False,0,0.75,2.0
+arabic__iraq,arabic,iraq,3,3,2,1,1,False,0,0.3,2.0
+arabic__kuwait,arabic,kuwait,3,3,2,1,1,False,0,0.5,1.0
+arabic__lebanon,arabic,lebanon,3,3,1,2,1,False,0,1.0,1.0
+azerbaijani__azerbaijan,azerbaijani,azerbaijan,3,3,1,2,1,False,0,2.0,2.0
+catalan__spain,catalan,spain,3,3,2,1,1,False,0,0.2,0.5
+croatian__croatia,croatian,croatia,3,3,2,1,1,False,0,0.1,1.0
+french__belgium,french,belgium,3,3,1,2,1,False,0,0.0,0.0
+haitian creole french__haiti,haitian creole french,haiti,3,3,1,2,1,False,0,1.0,1.0
+nepali__nepal,nepali,nepal,3,3,1,2,1,False,0,1.5,2.0
+portuguese__portugal,portuguese,portugal,3,3,1,2,1,False,0,0.0,2.0
+pulaar__senegal,pulaar,senegal,3,3,1,2,1,False,0,0.0,0.5
+swedish__finland,swedish,finland,3,3,1,2,1,False,0,0.1,0.4
+wolof__senegal,wolof,senegal,3,3,2,1,1,False,0,0.0,1.5
+yupik__usa,yupik,usa,3,3,2,1,1,True,0,40.0,42.0
+akan__ghana,akan,ghana,2,2,1,1,1,False,0,1.1,2.0
+albanian__albania,albanian,albania,2,2,1,1,1,False,0,0.72,1.4
+american sign language__usa,american sign language,usa,2,2,1,1,1,True,0,27.5,36.0
+arabic__uk,arabic,uk,2,2,1,1,1,True,0,7.0,9.0
+arabic__yemen,arabic,yemen,2,2,1,1,1,False,0,2.0,2.0
+dari__afghanistan,dari,afghanistan,2,2,1,1,1,False,0,1.25,1.5
+filipino__philippines,filipino,philippines,2,2,1,1,1,False,0,1.25,2.0
+french__democratic republic of congo,french,democratic republic of congo,2,2,1,1,1,False,0,1.0,2.0
+french__switzerland,french,switzerland,2,2,1,1,1,False,0,0.0,0.0
+georgian__republic of georgia,georgian,republic of georgia,2,2,1,1,1,False,0,1.5,2.0
+greek__usa,greek,usa,2,2,1,1,1,True,0,21.0,22.0
+pashto__afghanistan,pashto,afghanistan,2,2,1,1,1,False,0,0.875,1.0
+romanian__moldova,romanian,moldova,2,2,1,1,1,False,0,1.0,2.0
+spanish__dominican republic,spanish,dominican republic,2,2,1,1,1,False,0,1.125,2.0
+spanish__ecuador,spanish,ecuador,2,2,1,1,1,False,0,1.0,1.0
+spanish__el salvador,spanish,el salvador,2,2,1,1,1,False,0,1.25,2.0
+spanish__puerto rico,spanish,puerto rico,2,2,1,1,1,False,0,1.15,2.0
+turkish__germany,turkish,germany,2,2,1,1,1,False,0,1.0,2.0
+turkmen__turkmenistan,turkmen,turkmenistan,2,2,1,1,1,False,0,0.7,1.0
+urdu__india,urdu,india,2,2,1,1,1,False,0,1.4,2.0
+yiddish__canada,yiddish,canada,2,2,1,1,1,True,0,67.5,71.0
+hungarian__hungary,hungarian,hungary,6,6,6,0,0,False,0,0.75,2.0
+bulgarian__bulgaria,bulgarian,bulgaria,5,5,0,5,0,False,0,0.1,2.0
+lithuanian__lithuania,lithuanian,lithuania,5,5,5,0,0,False,0,0.75,2.0
+urdu__pakistan,urdu,pakistan,5,5,0,5,0,False,0,1.5,2.0
+nicaragua creole english__nicaragua,nicaragua creole english,nicaragua,4,4,0,4,0,False,0,0.0,0.0
+arabic__qatar,arabic,qatar,3,3,0,3,0,False,0,1.0,2.0
+croatian__bosnia and herzegovina,croatian,bosnia and herzegovina,3,3,3,0,0,False,0,0.2,0.75
+malayalam__india,malayalam,india,3,3,0,3,0,False,0,0.0,0.7
+panjabi__india,panjabi,india,3,3,0,3,0,False,0,0.6,2.0
+panjabi__pakistan,panjabi,pakistan,3,3,0,3,0,False,0,0.25,2.0
+spanish__usa,spanish,usa,3,3,3,0,0,True,0,20.0,66.0
+voro__estonia,voro,estonia,3,3,3,0,0,False,0,0.1,0.1
+arabic__egypt,arabic,egypt,2,2,0,2,0,False,0,1.2,2.0
+arabic__libya,arabic,libya,2,2,2,0,0,False,0,1.15,2.0
+armenian__armenia,armenian,armenia,2,2,2,0,0,False,0,0.75,1.0
+belarusan__belarus,belarusan,belarus,2,2,0,2,0,False,0,0.0,0.0
+bengali__bangladesh,bengali,bangladesh,2,2,0,2,0,False,0,1.25,1.5
+chinese__usa,chinese,usa,2,2,0,2,0,True,0,19.0,22.0
+french__ivory coast,french,ivory coast,2,2,2,0,0,False,0,1.75,2.0
+kirghiz__kyrgystan,kirghiz,kyrgystan,2,2,2,0,0,False,0,0.3,0.5
+kiswahili__tanzania,kiswahili,tanzania,2,2,0,2,0,False,0,0.3,0.3
+konkani__india,konkani,india,2,2,0,2,0,False,0,0.15000000000000002,0.2
+kurdi__iraq,kurdi,iraq,2,2,0,2,0,False,0,1.25,1.5
+mauritian__mauritius,mauritian,mauritius,2,2,0,2,0,False,0,0.30000000000000004,0.4
+portuguese__angola,portuguese,angola,2,2,0,2,0,False,0,1.0,1.0
+slovak__slovak republic,slovak,slovak republic,2,2,2,0,0,False,0,0.44999999999999996,0.6
+spanish__bolivia,spanish,bolivia,2,2,0,2,0,False,0,1.7,2.0
+spanish__uruguay,spanish,uruguay,2,2,0,2,0,False,0,0.75,1.5
+tibetan__tibet,tibetan,tibet,2,2,2,0,0,False,0,0.3,0.5
+urdu__usa,urdu,usa,2,2,2,0,0,True,0,12.0,20.0
+uyghur__china,uyghur,china,2,2,2,0,0,False,0,1.75,2.0
+agni__ivory coast,agni,ivory coast,1,1,0,1,0,False,0,1.2,1.2
+akan__ivory coast,akan,ivory coast,1,1,1,0,0,False,0,0.2,0.2
+akan__usa,akan,usa,1,1,0,1,0,True,0,19.0,19.0
+arabic__bahrain,arabic,bahrain,1,1,0,1,0,False,0,1.75,1.75
+arabic__syria,arabic,syria,1,1,0,1,0,False,0,0.3,0.3
+armenian__russia,armenian,russia,1,1,0,1,0,False,0,0.0,0.0
+baga__guinea,baga,guinea,1,1,0,1,0,False,0,2.0,2.0
+bahasa melayu__malaysia,bahasa melayu,malaysia,1,1,0,1,0,False,0,0.0,0.0
+bai__china,bai,china,1,1,1,0,0,False,0,0.0,0.0
+balant__senegal,balant,senegal,1,1,0,1,0,False,0,0.0,0.0
+bamanankan__senegal,bamanankan,senegal,1,1,0,1,0,False,0,0.0,0.0
+bamun__cameroon,bamun,cameroon,1,1,1,0,0,False,0,2.0,2.0
+bangla__bangladesh,bangla,bangladesh,1,1,1,0,0,False,0,1.0,1.0
+bengali__usa,bengali,usa,1,1,1,0,0,True,0,22.0,22.0
+bisayan__philippines,bisayan,philippines,1,1,1,0,0,False,0,0.6,0.6
+burmese__myanmar,burmese,myanmar,1,1,1,0,0,False,0,1.5,1.5
+chamorro__northern mariana islands,chamorro,northern mariana islands,1,1,0,1,0,False,0,0.2,0.2
+chinese__singapore,chinese,singapore,1,1,0,1,0,False,0,1.0,1.0
+dholuo__kenya,dholuo,kenya,1,1,0,1,0,False,0,2.0,2.0
+djola__senegal,djola,senegal,1,1,0,1,0,False,0,0.0,0.0
+dutch__south korea,dutch,south korea,1,1,1,0,0,False,0,0.0,0.0
+fang__equatorial guinea,fang,equatorial guinea,1,1,1,0,0,False,0,1.0,1.0
+faroese__faroe islands,faroese,faroe islands,1,1,0,1,0,False,0,0.0,0.0
+farsi__iraq,farsi,iraq,1,1,0,1,0,False,0,0.0,0.0
+farsi__usa,farsi,usa,1,1,1,0,0,True,0,14.0,14.0
+finnish__canada,finnish,canada,1,1,0,1,0,True,0,30.0,30.0
+french__algeria,french,algeria,1,1,0,1,0,False,0,0.0,0.0
+french__andorra,french,andorra,1,1,0,1,0,False,0,0.0,0.0
+french__cameroon,french,cameroon,1,1,1,0,0,False,0,0.4,0.4
+french__gabon,french,gabon,1,1,1,0,0,False,0,1.0,1.0
+french__martinique,french,martinique,1,1,0,1,0,False,0,0.0,0.0
+french__tunisia,french,tunisia,1,1,0,1,0,False,0,0.5,0.5
+french__usa,french,usa,1,1,0,1,0,True,0,0.3,0.3
+french__zimbabwe,french,zimbabwe,1,1,1,0,0,False,0,1.0,1.0
+ga__ghana,ga,ghana,1,1,1,0,0,False,0,1.0,1.0
+gaddang__philippines,gaddang,philippines,1,1,0,1,0,False,0,0.2,0.2
+garifuna__belize,garifuna,belize,1,1,1,0,0,False,0,0.0,0.0
+german__switzerland,german,switzerland,1,1,0,1,0,False,0,0.5,0.5
+gujarati__ireland,gujarati,ireland,1,1,1,0,0,True,0,3.0,3.0
+hausa__nigeria,hausa,nigeria,1,1,1,0,0,False,0,0.0,0.0
+hiligaynon__philippines,hiligaynon,philippines,1,1,1,0,0,False,0,1.3,1.3
+hindi__usa,hindi,usa,1,1,0,1,0,True,0,19.0,19.0
+hungarian__romania,hungarian,romania,1,1,1,0,0,False,0,1.0,1.0
+icelandic__iceland,icelandic,iceland,1,1,0,1,0,False,0,0.0,0.0
+igbo__nigeria,igbo,nigeria,1,1,1,0,0,False,0,0.4,0.4
+indonesian__indonesian,indonesian,indonesian,1,1,1,0,0,False,0,0.0,0.0
+irish__ireland,irish,ireland,1,1,0,1,0,True,0,28.0,28.0
+javanese__indonesisa,javanese,indonesisa,1,1,0,1,0,False,0,1.6,1.6
+kabyle__algeria,kabyle,algeria,1,1,1,0,0,False,0,0.0,0.0
+kannada__usa,kannada,usa,1,1,1,0,0,True,0,2.0,2.0
+khasonke__senegal,khasonke,senegal,1,1,1,0,0,False,0,0.0,0.0
+khmer__australia,khmer,australia,1,1,1,0,0,True,0,20.0,20.0
+kikongo__usa,kikongo,usa,1,1,0,1,0,True,0,1.0,1.0
+kirghiz__kyrgyzstan,kirghiz,kyrgyzstan,1,1,1,0,0,False,0,2.0,2.0
+kirundi__burundi,kirundi,burundi,1,1,0,1,0,False,0,0.1,0.1
+kiswahili__democratic republic of congo,kiswahili,democratic republic of congo,1,1,0,1,0,False,0,1.0,1.0
+kiswahili__kenya,kiswahili,kenya,1,1,1,0,0,False,0,1.0,1.0
+korean__usa,korean,usa,1,1,0,1,0,True,0,13.0,13.0
+kurdish__iran,kurdish,iran,1,1,0,1,0,False,0,0.0,0.0
+lamaholot__indonesia,lamaholot,indonesia,1,1,0,1,0,False,0,0.25,0.25
+lao__laos,lao,laos,1,1,1,0,0,False,0,1.0,1.0
+latvian__latvia,latvian,latvia,1,1,1,0,0,False,0,0.2,0.2
+luba-kasai__democratic republic of the congo,luba-kasai,democratic republic of the congo,1,1,0,1,0,False,0,0.8,0.8
+malagasy__madagascar,malagasy,madagascar,1,1,0,1,0,False,0,2.0,2.0
+malay__malaysia,malay,malaysia,1,1,1,0,0,False,0,0.1,0.1
+malayalam__united arab emirates,malayalam,united arab emirates,1,1,1,0,0,False,0,0.0,0.0
+maltese__malta,maltese,malta,1,1,1,0,0,False,0,0.0,0.0
+mancagne__senegal,mancagne,senegal,1,1,0,1,0,False,0,0.0,0.0
+mandarin__malaysia,mandarin,malaysia,1,1,1,0,0,False,0,0.1,0.1
+mandarin__taiwan,mandarin,taiwan,1,1,1,0,0,False,0,0.2,0.2
+mandingue__senegal,mandingue,senegal,1,1,0,1,0,False,0,0.0,0.0
+mongolian__china,mongolian,china,1,1,0,1,0,False,0,1.5,1.5
+montenegrin__montenegro,montenegrin,montenegro,1,1,1,0,0,False,0,1.0,1.0
+northern sotho__south africa,northern sotho,south africa,1,1,1,0,0,True,0,36.0,36.0
+oriya__india,oriya,india,1,1,0,1,0,False,0,0.0,0.0
+ossetic__russia,ossetic,russia,1,1,1,0,0,False,0,0.0,0.0
+pahari__india,pahari,india,1,1,0,1,0,False,0,1.0,1.0
+pohnpeian__federated states of micronesia,pohnpeian,federated states of micronesia,1,1,0,1,0,False,0,0.25,0.25
+portuguese__uk,portuguese,uk,1,1,0,1,0,True,0,4.0,4.0
+russian__estonia,russian,estonia,1,1,0,1,0,False,0,0.75,0.75
+russian__germany,russian,germany,1,1,0,1,0,False,0,0.0,0.0
+russian__kazakhstan,russian,kazakhstan,1,1,1,0,0,False,0,0.0,0.0
+russian__kyrgyzstan,russian,kyrgyzstan,1,1,1,0,0,False,0,2.0,2.0
+russian__moldova,russian,moldova,1,1,0,1,0,False,0,0.0,0.0
+russian__usa,russian,usa,1,1,1,0,0,True,0,25.0,25.0
+sarua__chad,sarua,chad,1,1,0,1,0,False,0,0.1,0.1
+serbian__bosnia,serbian,bosnia,1,1,1,0,0,False,0,1.0,1.0
+serbian__bosnia and herzegovina,serbian,bosnia and herzegovina,1,1,1,0,0,False,0,0.7,0.7
+serer__senegal,serer,senegal,1,1,0,1,0,False,0,0.0,0.0
+shan__myanmar,shan,myanmar,1,1,1,0,0,False,0,0.0,0.0
+shona__zimbabwe,shona,zimbabwe,1,1,0,1,0,False,0,1.0,1.0
+sindhi__pakistan,sindhi,pakistan,1,1,0,1,0,False,0,1.5,1.5
+sinhala__sri lanka,sinhala,sri lanka,1,1,1,0,0,False,0,0.75,0.75
+slovak__slovakia,slovak,slovakia,1,1,1,0,0,False,0,1.0,1.0
+slovenian__slovenia,slovenian,slovenia,1,1,1,0,0,False,0,1.5,1.5
+spanish__costa rica,spanish,costa rica,1,1,0,1,0,False,0,0.0,0.0
+spanish__honduras,spanish,honduras,1,1,0,1,0,False,0,0.0,0.0
+sundanese__indonesia,sundanese,indonesia,1,1,0,1,0,False,0,0.0,0.0
+susu__guinea,susu,guinea,1,1,0,1,0,False,0,1.0,1.0
+tagalog__usa,tagalog,usa,1,1,0,1,0,True,0,20.0,20.0
+telugu__usa,telugu,usa,1,1,1,0,0,True,0,18.0,18.0
+tibetan__china,tibetan,china,1,1,0,1,0,False,0,1.0,1.0
+tibetan__india,tibetan,india,1,1,1,0,0,False,0,0.7,0.7
+turkish__tajikistan,turkish,tajikistan,1,1,0,1,0,False,0,0.0,0.0
+urdu__kuwait,urdu,kuwait,1,1,0,1,0,False,0,0.5,0.5
+uzbek__tajikistan,uzbek,tajikistan,1,1,0,1,0,False,0,0.0,0.0
+uzbek__uzbekistan,uzbek,uzbekistan,1,1,1,0,0,False,0,1.0,1.0
+yakut__russia,yakut,russia,1,1,1,0,0,False,0,0.0,0.0
+yiddish__usa,yiddish,usa,1,1,0,1,0,True,0,52.0,52.0
+yoruba__benin,yoruba,benin,1,1,0,1,0,False,0,0.25,0.25
+yoruba__nigeria,yoruba,nigeria,1,1,0,1,0,False,0,1.0,1.0

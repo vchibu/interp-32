@@ -9,6 +9,8 @@ __pycache__/
 /data/raw/
 /data/processed/
 /data/
-/outputs/
+/outputs/*
+!/outputs/analysis/
+!/outputs/analysis/**
 
 !.gitkeep

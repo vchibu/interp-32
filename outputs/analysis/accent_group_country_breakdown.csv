@@ -1,0 +1,254 @@
+accent_group,country_of_origin,total_speakers,share_within_accent_group
+english,usa,432,0.653555219364599
+chinese,china,189,0.8552036199095022
+mandarin,china,137,0.8726114649681529
+arabic,saudi arabia,97,0.48258706467661694
+korean,south korea,97,0.9797979797979798
+english,uk,71,0.10741301059001512
+portuguese,brazil,58,0.8285714285714286
+russian,russia,54,0.6585365853658537
+english,canada,46,0.06959152798789713
+japanese,japan,44,0.9777777777777777
+najdi,saudi arabia,44,1.0
+english,australia,43,0.06505295007564296
+turkish,turkey,42,0.9333333333333333
+polish,poland,39,1.0
+vietnamese,vietnam,39,0.975
+italian,italy,38,0.926829268292683
+french,france,36,0.4235294117647059
+cantonese,china,35,0.9722222222222222
+german,germany,35,0.7777777777777778
+farsi,iran,33,0.825
+hindi,india,33,0.9705882352941176
+persian,iran,33,0.868421052631579
+spanish,colombia,32,0.13168724279835392
+hindi-urdu,india,31,0.96875
+dutch,belgium,29,0.5370370370370371
+spanish,el salvador,29,0.11934156378600823
+amharic,ethiopia,27,1.0
+chinese,taiwan,27,0.12217194570135746
+macedonian,macedonia,27,1.0
+spanish,mexico,26,0.10699588477366255
+dutch,netherlands,24,0.4444444444444444
+tagalog,philippines,24,0.8888888888888888
+thai,thailand,23,1.0
+hijazi,saudi arabia,22,0.88
+urdu,pakistan,22,0.7586206896551724
+bulgarian,bulgaria,20,1.0
+spanish,bolivia,20,0.0823045267489712
+spanish,peru,20,0.0823045267489712
+nepali,nepal,18,1.0
+romanian,romania,18,0.75
+spanish,spain,18,0.07407407407407407
+swedish,sweden,18,0.782608695652174
+bengali,bangladesh,17,0.7083333333333334
+estonian,estonia,17,1.0
+gujarati,india,16,0.9411764705882353
+mandarin,taiwan,16,0.10191082802547771
+dari,afghanistan,14,1.0
+finnish,finland,14,0.9333333333333333
+french,canada,14,0.16470588235294117
+serbian,serbia,14,0.7368421052631579
+spanish,venezuela,14,0.05761316872427984
+tajiki,tajikistan,14,1.0
+telugu,india,14,0.9333333333333333
+ukrainian,ukraine,14,1.0
+arabic,morocco,13,0.06467661691542288
+indonesian,indonesia,13,0.9285714285714286
+spanish,puerto rico,13,0.053497942386831275
+arabic,egypt,12,0.05970149253731343
+arabic,iraq,12,0.05970149253731343
+bahasa indonesia,indonesia,12,1.0
+bosnian,bosnia and herzegovina,12,1.0
+english,ireland,12,0.018154311649016642
+spanish,argentina,12,0.04938271604938271
+taiwanese,taiwan,12,1.0
+akan,ghana,11,0.8461538461538461
+greek,greece,11,0.6470588235294118
+hebrew,israel,11,1.0
+hungarian,hungary,11,0.8461538461538461
+marathi,india,11,1.0
+miskito,nicaragua,11,1.0
+spanish,dominican republic,11,0.04526748971193416
+tamil,india,11,0.8461538461538461
+arabic,lebanon,10,0.04975124378109453
+czech,czech republic,10,1.0
+russian,ukraine,10,0.12195121951219512
+sinhala,sri lanka,10,1.0
+sinhalese,sri lanka,10,1.0
+hausa,nigeria,9,0.9
+kurdish,iraq,9,0.9
+albanian,albania,8,0.5714285714285714
+english,new zealand,8,0.012102874432677761
+german,austria,8,0.17777777777777778
+panjabi,india,8,0.6666666666666666
+pashto,afghanistan,8,0.8
+punjabi,india,8,0.6666666666666666
+spanish,chile,8,0.03292181069958848
+arabic,israel,7,0.03482587064676617
+arabic,united arab emirates,7,0.03482587064676617
+mongolian,mongolia,7,0.7
+albanian,kosovo,6,0.42857142857142855
+arabic,jordan,6,0.029850746268656716
+arabic,kuwait,6,0.029850746268656716
+english,jamaica,6,0.009077155824508321
+kiswahili,tanzania,6,0.5454545454545454
+spanish,honduras,6,0.024691358024691357
+spanish,nicaragua,6,0.024691358024691357
+swahili,tanzania,6,0.5454545454545454
+arabic,usa,5,0.024875621890547265
+bengali,india,5,0.20833333333333334
+english,singapore,5,0.007564296520423601
+french,cameroon,5,0.058823529411764705
+portuguese,angola,5,0.07142857142857142
+portuguese,portugal,5,0.07142857142857142
+spanish,cuba,5,0.0205761316872428
+spanish,ecuador,5,0.0205761316872428
+swedish,finland,5,0.21739130434782608
+arabic,syria,4,0.01990049751243781
+english,south africa,4,0.006051437216338881
+farsi,afghanistan,4,0.1
+french,belgium,4,0.047058823529411764
+french,democratic republic of congo,4,0.047058823529411764
+french,ivory coast,4,0.047058823529411764
+kiswahili,kenya,4,0.36363636363636365
+panjabi,pakistan,4,0.3333333333333333
+punjabi,pakistan,4,0.3333333333333333
+romanian,moldova,4,0.16666666666666666
+russian,kazakhstan,4,0.04878048780487805
+spanish,panama,4,0.01646090534979424
+spanish,uruguay,4,0.01646090534979424
+swahili,kenya,4,0.36363636363636365
+arabic,libya,3,0.014925373134328358
+arabic,qatar,3,0.014925373134328358
+arabic,sudan,3,0.014925373134328358
+arabic,tunisia,3,0.014925373134328358
+english,india,3,0.0045385779122541605
+english,panama,3,0.0045385779122541605
+french,switzerland,3,0.03529411764705882
+hijazi,usa,3,0.12
+russian,belarus,3,0.036585365853658534
+russian,moldova,3,0.036585365853658534
+serbian,bosnia and herzegovina,3,0.15789473684210525
+spanish,guatemala,3,0.012345679012345678
+spanish,usa,3,0.012345679012345678
+urdu,india,3,0.10344827586206896
+arabic,uk,2,0.009950248756218905
+arabic,yemen,2,0.009950248756218905
+chinese,singapore,2,0.00904977375565611
+chinese,usa,2,0.00904977375565611
+english,guyana,2,0.0030257186081694403
+english,malaysia,2,0.0030257186081694403
+english,philippines,2,0.0030257186081694403
+french,algeria,2,0.023529411764705882
+greek,cyprus,2,0.11764705882352941
+greek,usa,2,0.11764705882352941
+hungarian,romania,2,0.15384615384615385
+mandarin,usa,2,0.012738853503184714
+pashto,pakistan,2,0.2
+persian,afghanistan,2,0.05263157894736842
+russian,latvia,2,0.024390243902439025
+spanish,costa rica,2,0.00823045267489712
+tamil,sri lanka,2,0.15384615384615385
+turkish,germany,2,0.044444444444444446
+urdu,usa,2,0.06896551724137931
+akan,ivory coast,1,0.07692307692307693
+akan,usa,1,0.07692307692307693
+arabic,algeria,1,0.004975124378109453
+arabic,bahrain,1,0.004975124378109453
+arabic,indonesia,1,0.004975124378109453
+arabic,israel (occupied territory),1,0.004975124378109453
+arabic,oman,1,0.004975124378109453
+arabic,palestine,1,0.004975124378109453
+bengali,usa,1,0.041666666666666664
+bengali,zambia,1,0.041666666666666664
+cantonese,vietnam,1,0.027777777777777776
+chinese,vietnam,1,0.004524886877828055
+dutch,south korea,1,0.018518518518518517
+english,antigua and barbuda,1,0.0015128593040847202
+english,barbados,1,0.0015128593040847202
+english,belize,1,0.0015128593040847202
+english,bolivia,1,0.0015128593040847202
+english,fiji,1,0.0015128593040847202
+english,germany,1,0.0015128593040847202
+english,ghana,1,0.0015128593040847202
+english,isle of man,1,0.0015128593040847202
+english,italy,1,0.0015128593040847202
+english,lebanon,1,0.0015128593040847202
+english,liberia,1,0.0015128593040847202
+english,new york,1,0.0015128593040847202
+english,nigeria,1,0.0015128593040847202
+english,pakistan,1,0.0015128593040847202
+english,papua new guinea,1,0.0015128593040847202
+english,spain,1,0.0015128593040847202
+english,switzerland,1,0.0015128593040847202
+english,the bahamas,1,0.0015128593040847202
+english,trinidad,1,0.0015128593040847202
+english,united arab emirates,1,0.0015128593040847202
+english,us virgin islands,1,0.0015128593040847202
+english,virginia,1,0.0015128593040847202
+farsi,germany,1,0.025
+farsi,iraq,1,0.025
+farsi,usa,1,0.025
+finnish,canada,1,0.06666666666666667
+french,andorra,1,0.011764705882352941
+french,burkina faso,1,0.011764705882352941
+french,gabon,1,0.011764705882352941
+french,haiti,1,0.011764705882352941
+french,martinique,1,0.011764705882352941
+french,morocco,1,0.011764705882352941
+french,pakistan,1,0.011764705882352941
+french,portugal,1,0.011764705882352941
+french,senegal,1,0.011764705882352941
+french,togo,1,0.011764705882352941
+french,tunisia,1,0.011764705882352941
+french,usa,1,0.011764705882352941
+french,zimbabwe,1,0.011764705882352941
+german,liechtenstein,1,0.022222222222222223
+german,switzerland,1,0.022222222222222223
+greek,albania,1,0.058823529411764705
+greek,israel,1,0.058823529411764705
+gujarati,ireland,1,0.058823529411764705
+hausa,niger,1,0.1
+hindi,usa,1,0.029411764705882353
+hindi-urdu,usa,1,0.03125
+indonesian,indonesian,1,0.07142857142857142
+italian,germany,1,0.024390243902439025
+italian,sicily,1,0.024390243902439025
+italian,switzerland,1,0.024390243902439025
+japanese,philippines,1,0.022222222222222223
+kiswahili,democratic republic of congo,1,0.09090909090909091
+korean,malaysia,1,0.010101010101010102
+korean,usa,1,0.010101010101010102
+kurdish,iran,1,0.1
+mandarin,malaysia,1,0.006369426751592357
+mandarin,singapore,1,0.006369426751592357
+mongolian,bulgaria,1,0.1
+mongolian,china,1,0.1
+mongolian,russia,1,0.1
+persian,germany,1,0.02631578947368421
+persian,iraq,1,0.02631578947368421
+persian,usa,1,0.02631578947368421
+portuguese,mexico,1,0.014285714285714285
+portuguese,uk,1,0.014285714285714285
+romanian,romanian,1,0.041666666666666664
+romanian,ukraine,1,0.041666666666666664
+russian,azerbaijan,1,0.012195121951219513
+russian,estonia,1,0.012195121951219513
+russian,germany,1,0.012195121951219513
+russian,kyrgyzstan,1,0.012195121951219513
+russian,usa,1,0.012195121951219513
+russian,uzbekistan,1,0.012195121951219513
+serbian,bosnia,1,0.05263157894736842
+serbian,montenegro,1,0.05263157894736842
+spanish,el salvadore,1,0.00411522633744856
+spanish,paraguay,1,0.00411522633744856
+swahili,democratic republic of congo,1,0.09090909090909091
+tagalog,philippiness,1,0.037037037037037035
+tagalog,solomon islands,1,0.037037037037037035
+tagalog,usa,1,0.037037037037037035
+telugu,usa,1,0.06666666666666667
+turkish,tajikistan,1,0.022222222222222223
+urdu,kuwait,1,0.034482758620689655
+urdu,united arab emirates,1,0.034482758620689655
+vietnamese,vietnamese,1,0.025
