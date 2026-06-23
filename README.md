@@ -154,6 +154,18 @@ Each clustering job uses `probe_feature_index_filtered.csv`, reads the best laye
 - `layer_<N>_centroid_dendrogram.png`
 - `layer_<N>_centroid_pca.png`
 
+To repeat the same probe, model-comparison, and centroid-clustering workflow with all groups that have at least 5 female/male pairs, submit:
+
+```bash
+base_job=$(sbatch --parsable jobs/run_probes_accent_country_min5_pairs_base.sh)
+finetuned_job=$(sbatch --parsable jobs/run_probes_accent_country_min5_pairs_base_960h.sh)
+plot_job=$(sbatch --parsable --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_accent_country_min5_pairs.sh)
+sbatch --dependency=afterok:$base_job jobs/cluster_centroids_accent_country_min5_pairs_base.sh
+sbatch --dependency=afterok:$finetuned_job jobs/cluster_centroids_accent_country_min5_pairs_base_960h.sh
+```
+
+These outputs are written under `outputs/analysis/accent_country_min5_pairs/`.
+
 Dataset summary example:
 
 `python -m src.cli summarize-accent-groups --top-n 20`
