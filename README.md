@@ -78,6 +78,82 @@ sbatch jobs/run_probes_base.sh
 sbatch jobs/run_probes_base_960h.sh
 ```
 
+By default, `run-probes` predicts `dataset.label_field` from `configs/base.yaml`, keeps labels with at least `dataset.min_examples_per_label` examples, and runs five repeated stratified train/test splits. It writes:
+
+- `layerwise_probe_results.csv`: mean and standard deviation by layer for accuracy, balanced accuracy, macro F1, and weighted F1
+- `layerwise_probe_split_results.csv`: one row per layer and split, including majority and stratified dummy baselines
+- `probe_class_counts.csv`: label counts and whether each label was included
+- `probe_feature_index_filtered.csv`: exact recordings used for the probe
+- `best_layer_confusion_matrix.csv`: summed confusion matrix across splits for the best layer by macro F1
+- `layer_<N>_dimension_mi.csv`: mutual-information ranking of dimensions for the requested layer
+
+Useful probe options:
+
+```bash
+python -m src.cli run-probes \
+  --model-name facebook/wav2vec2-base-960h \
+  --label-field native_language \
+  --min-examples-per-label 20 \
+  --top-n-labels 20
+```
+
+To inspect accent-country probe candidates before choosing a minimum group size, run:
+
+```bash
+python -m src.cli summarize-probe-groups
+```
+
+This writes `outputs/analysis/accent_country_probe_candidates.csv` with speaker counts, female/male counts, and balanced female/male pairs for each `native_language` + `country_of_origin` group. It also writes `outputs/analysis/accent_country_probe_manifest_with_filter.csv`, which marks which recordings remain after excluding speakers born outside the configured English-speaking countries with more than two years of English residence.
+
+To run probes directly on those accent-country labels:
+
+```bash
+python -m src.cli run-probes \
+  --model-name facebook/wav2vec2-base-960h \
+  --accent-country-filter \
+  --min-examples-per-label 20
+```
+
+For the main accent-country experiment with all speakers from groups that have at least 15 female and 15 male speakers, submit:
+
+```bash
+base_job=$(sbatch --parsable jobs/run_probes_accent_country_min15_pairs_base.sh)
+finetuned_job=$(sbatch --parsable jobs/run_probes_accent_country_min15_pairs_base_960h.sh)
+sbatch --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_accent_country_min15_pairs.sh
+```
+
+Each job writes a layer-wise plot to its analysis directory:
+
+- `outputs/analysis/accent_country_min15_pairs/facebook_wav2vec2_base/layerwise_probe_macro_f1.png`
+- `outputs/analysis/accent_country_min15_pairs/facebook_wav2vec2_base_960h/layerwise_probe_macro_f1.png`
+
+The dependency job makes a single model-comparison plot. To run that plot manually instead:
+
+```bash
+python -m src.cli plot-probe-comparison \
+  --output-path outputs/analysis/accent_country_min15_pairs/model_comparison_macro_f1.png \
+  --summary base outputs/analysis/accent_country_min15_pairs/facebook_wav2vec2_base/layerwise_probe_results.csv \
+  --summary base_960h outputs/analysis/accent_country_min15_pairs/facebook_wav2vec2_base_960h/layerwise_probe_results.csv
+```
+
+To cluster accent-country centroids at each model's best probe layer, submit:
+
+```bash
+sbatch jobs/cluster_centroids_accent_country_min15_pairs_base.sh
+sbatch jobs/cluster_centroids_accent_country_min15_pairs_base_960h.sh
+```
+
+Each clustering job uses `probe_feature_index_filtered.csv`, reads the best layer from `layerwise_probe_results.csv`, and writes:
+
+- `layer_<N>_centroids.csv`
+- `layer_<N>_group_counts.csv`
+- `layer_<N>_centroid_distances.csv`
+- `layer_<N>_centroid_distances_long.csv`
+- `layer_<N>_cluster_order.csv`
+- `layer_<N>_centroid_distance_heatmap.png`
+- `layer_<N>_centroid_dendrogram.png`
+- `layer_<N>_centroid_pca.png`
+
 Dataset summary example:
 
 `python -m src.cli summarize-accent-groups --top-n 20`

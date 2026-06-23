@@ -31,4 +31,5 @@ model:
 analysis:
   random_seed: 42
   probe_test_size: 0.2
+  probe_n_splits: 5
   reducer: umap
