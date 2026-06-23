@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
+import re
 
 import pandas as pd
 
@@ -10,7 +12,9 @@ from src.analysis.dataset_summary import save_summary, summarize_top_accent_grou
 from src.analysis.dimension_stats import rank_dimensions_by_mi
 from src.analysis.layerwise_probes import run_probe_analysis
 from src.config import load_config
+from src.data.build_archive_manifest import build_archive_manifest
 from src.data.build_manifest import build_manifest, save_manifest
+from src.data.download_archive_audio import download_audio_from_metadata
 from src.data.normalize_audio import normalize_from_manifest
 from src.data.scrape_accent_archive import scrape_archive
 from src.extract.extract_hidden_states import extract_from_manifest
@@ -21,6 +25,11 @@ def _read_csv(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(f"Required file not found: {path}")
     return pd.read_csv(path)
+
+
+def _slugify_model_name(model_name: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "_", model_name.strip().lower())
+    return re.sub(r"_+", "_", slug).strip("_")
 
 
 def main() -> None:
@@ -36,14 +45,39 @@ def main() -> None:
     scrape_parser.add_argument("--max-speakers", type=int, default=None, help="Optional cap for validation runs")
     scrape_parser.add_argument("--metadata-only", action="store_true", help="Scrape metadata without downloading audio")
 
+    download_parser = subparsers.add_parser(
+        "download-archive-audio",
+        help="Download every unique archive audio URL from the raw metadata with no filtering or caps",
+    )
+    download_parser.add_argument("--config", default="configs/base.yaml")
+    download_parser.add_argument("--metadata-path", default=None)
+    download_parser.add_argument("--audio-dir", default=None)
+    download_parser.add_argument("--output-metadata-path", default=None)
+    download_parser.add_argument("--download-index-path", default=None)
+    download_parser.add_argument("--timeout", type=int, default=90)
+
     normalize_parser = subparsers.add_parser("normalize-audio", help="Normalize audio from manifest")
     normalize_parser.add_argument("--config", default="configs/base.yaml")
+    normalize_parser.add_argument("--overwrite", action="store_true", help="Renormalize WAV files even when they already exist")
+    normalize_parser.add_argument(
+        "--num-workers",
+        type=int,
+        default=None,
+        help="Parallel normalization workers; defaults to SLURM_CPUS_PER_TASK or 1",
+    )
 
     extract_parser = subparsers.add_parser("extract-hidden-states", help="Extract wav2vec2 hidden states")
     extract_parser.add_argument("--config", default="configs/base.yaml")
+    extract_parser.add_argument("--model-name", default=None, help="Hugging Face model name; defaults to config model.model_name")
+    extract_parser.add_argument("--feature-dir", default=None, help="Output directory for .npz feature files")
+    extract_parser.add_argument("--feature-index-path", default=None, help="Output CSV path for the feature index")
+    extract_parser.add_argument("--overwrite", action="store_true", help="Recompute features even when .npz files already exist")
 
     probes_parser = subparsers.add_parser("run-probes", help="Run layer-wise linear probes")
     probes_parser.add_argument("--config", default="configs/base.yaml")
+    probes_parser.add_argument("--model-name", default=None, help="Model name used to choose the model-specific feature index")
+    probes_parser.add_argument("--feature-index-path", default=None, help="Feature index CSV to analyze")
+    probes_parser.add_argument("--analysis-dir", default=None, help="Directory for probe outputs")
     probes_parser.add_argument("--layer", type=int, default=0, help="Layer to use for MI ranking output")
 
     summary_parser = subparsers.add_parser("summarize-accent-groups", help="Summarize largest accent groups from raw metadata")
@@ -70,12 +104,44 @@ def main() -> None:
 
     if args.command == "build-manifest":
         output_path = manifest_dir / "manifest.csv"
-        df = build_manifest(
-            config["paths"]["raw_dir"],
-            default_transcript=config["dataset"].get("transcript_text"),
-        )
+        raw_dir = Path(config["paths"]["raw_dir"])
+        enriched_metadata_path = raw_dir / "accent_archive_metadata_with_audio.csv"
+        if enriched_metadata_path.exists():
+            df = build_archive_manifest(
+                metadata_path=enriched_metadata_path,
+                audio_dir=raw_dir / "audio",
+                default_transcript=config["dataset"].get("transcript_text"),
+            )
+        else:
+            df = build_manifest(
+                config["paths"]["raw_dir"],
+                default_transcript=config["dataset"].get("transcript_text"),
+            )
         save_manifest(df, output_path)
         print(f"Manifest written to {output_path}")
+        return
+
+    if args.command == "download-archive-audio":
+        raw_dir = Path(config["paths"]["raw_dir"])
+        metadata_path = Path(args.metadata_path) if args.metadata_path else raw_dir / "accent_archive_metadata.csv"
+        audio_dir = Path(args.audio_dir) if args.audio_dir else raw_dir / "audio"
+        output_metadata_path = (
+            Path(args.output_metadata_path)
+            if args.output_metadata_path
+            else raw_dir / "accent_archive_metadata_with_audio.csv"
+        )
+        download_index_path = (
+            Path(args.download_index_path)
+            if args.download_index_path
+            else manifest_dir / "archive_audio_download_index.csv"
+        )
+        download_audio_from_metadata(
+            metadata_path=metadata_path,
+            audio_dir=audio_dir,
+            output_metadata_path=output_metadata_path,
+            download_index_path=download_index_path,
+            timeout=args.timeout,
+        )
         return
 
     if args.command == "normalize-audio":
@@ -86,6 +152,8 @@ def main() -> None:
             manifest=manifest,
             processed_audio_dir=config["paths"]["processed_audio_dir"],
             sample_rate=config["audio"]["target_sample_rate"],
+            overwrite=args.overwrite,
+            num_workers=args.num_workers or int(os.environ.get("SLURM_CPUS_PER_TASK", "1")),
         )
         save_manifest(normalized, output_path)
         print(f"Normalized manifest written to {output_path}")
@@ -93,26 +161,45 @@ def main() -> None:
 
     if args.command == "extract-hidden-states":
         input_path = manifest_dir / "manifest_normalized.csv"
-        output_path = manifest_dir / "feature_index.csv"
+        model_name = args.model_name or config["model"]["model_name"]
+        model_slug = _slugify_model_name(model_name)
+        output_path = (
+            Path(args.feature_index_path)
+            if args.feature_index_path
+            else manifest_dir / f"feature_index_{model_slug}.csv"
+        )
+        feature_dir = (
+            Path(args.feature_dir)
+            if args.feature_dir
+            else Path(config["paths"]["feature_dir"]) / model_slug
+        )
         manifest = _read_csv(input_path)
         bundle = load_wav2vec2(
-            model_name=config["model"]["model_name"],
+            model_name=model_name,
             device_name=config["model"]["device"],
         )
         feature_index = extract_from_manifest(
             manifest=manifest,
             bundle=bundle,
-            output_dir=config["paths"]["feature_dir"],
+            output_dir=feature_dir,
             sample_rate=config["audio"]["target_sample_rate"],
             save_frame_level=config["model"]["save_frame_level"],
+            overwrite=args.overwrite,
         )
+        feature_index["model_slug"] = model_slug
         save_manifest(feature_index, output_path)
         print(f"Feature index written to {output_path}")
         return
 
     if args.command == "run-probes":
-        input_path = manifest_dir / "feature_index.csv"
-        analysis_dir = Path(config["paths"]["analysis_dir"])
+        model_name = args.model_name or config["model"]["model_name"]
+        model_slug = _slugify_model_name(model_name)
+        input_path = (
+            Path(args.feature_index_path)
+            if args.feature_index_path
+            else manifest_dir / f"feature_index_{model_slug}.csv"
+        )
+        analysis_dir = Path(args.analysis_dir) if args.analysis_dir else Path(config["paths"]["analysis_dir"]) / model_slug
         analysis_dir.mkdir(parents=True, exist_ok=True)
         feature_index = _read_csv(input_path)
 
