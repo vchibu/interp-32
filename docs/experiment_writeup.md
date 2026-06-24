@@ -110,6 +110,433 @@ All four datasets use the same code path, label definition, English-residence fi
 
 The min5 datasets include more labels but have smaller classes. The min15 datasets include fewer labels but provide more reliable estimates. The min5 balanced-sex dataset has only 10 examples per class, so it is mainly a strict stress test. The min15 balanced-sex dataset has 30 examples per class and is the preferred balanced robustness check.
 
+## Exact Dataset Construction And Splitting
+
+This section describes precisely how every dataset version is constructed and how examples are split for probing. The important distinction is:
+
+```text
+dataset construction = which speakers are eligible and selected
+probe split = how the selected speakers are divided into train/test folds
+```
+
+The same construction pipeline is used for all four dataset versions until the final all-speaker versus balanced-sex selection step.
+
+### Step 1: Start From The Model Feature Index
+
+Each model has its own feature index:
+
+```text
+data/manifests/feature_index_facebook_wav2vec2_base.csv
+data/manifests/feature_index_facebook_wav2vec2_base_960h.csv
+```
+
+These files contain one row per recording/speaker with:
+
+- `speaker_id`
+- `sample_name`
+- `feature_path`
+- `native_language`
+- `all_native_languages`
+- `country_of_origin`
+- `sex`
+- `length_of_english_residence`
+- other metadata copied from the manifest
+
+The feature paths point to cached `.npz` files containing:
+
+```text
+pooled_hidden_states: shape (13, 768)
+```
+
+The same speaker inclusion logic is applied separately to each model's feature index, but the metadata and selected speaker identities should match across models because both feature indexes come from the same normalized manifest.
+
+### Step 2: Derive `first_language`
+
+The code derives a new column:
+
+```text
+first_language
+```
+
+from `native_language` and `all_native_languages`.
+
+The rule is:
+
+1. Normalize labels to lowercase and strip whitespace.
+2. Split `all_native_languages` on semicolons.
+3. If `native_language` is a broad label such as `chinese` and a more specific label is present, use the more specific label.
+4. Otherwise keep the cleaned `native_language` when it is already specific.
+5. If only one usable non-broad label exists, use that.
+6. Otherwise fall back to the first label in `all_native_languages`.
+
+Examples:
+
+```text
+native_language=chinese, all_native_languages=chinese;mandarin -> first_language=mandarin
+native_language=cantonese, all_native_languages=cantonese;chinese -> first_language=cantonese
+native_language=chinese, all_native_languages=chinese;wu -> first_language=wu
+native_language=english, all_native_languages=english -> first_language=english
+```
+
+This is the key reason the current experiment folders are named `first_language_country_*`.
+
+### Step 3: Derive The Probe Label
+
+The final class label is:
+
+```text
+accent_country_label = first_language + "__" + country_of_origin
+```
+
+Examples:
+
+```text
+english__usa
+mandarin__china
+cantonese__china
+arabic__saudi arabia
+korean__south korea
+```
+
+Rows without a usable first-language label, country-of-origin label, feature path, or binary sex label are removed before probing.
+
+### Step 4: Apply English-Residence Filtering
+
+For speakers born outside the configured English-speaking birth countries, the code excludes speakers with:
+
+```text
+length_of_english_residence > 2 years
+```
+
+The default English-speaking birth-country list is:
+
+```text
+usa
+uk
+canada
+australia
+ireland
+new zealand
+south africa
+```
+
+So:
+
+- `english__usa` speakers are not excluded for high English residence.
+- `french__canada` speakers are not excluded for high English residence because Canada is in the English-speaking birth-country list.
+- `mandarin__china` speakers with more than two years English residence are excluded.
+- `portuguese__brazil` speakers with more than two years English residence are excluded.
+
+The parsed numeric residence duration is written as:
+
+```text
+english_residence_years
+```
+
+The filter marker columns include:
+
+```text
+is_english_speaking_birth_country
+excluded_for_english_residence
+eligible_for_accent_country_probe
+```
+
+### Step 5: Count Female/Male Availability Per Label
+
+After the residence filter, the code counts speakers per label:
+
+```text
+n_female
+n_male
+n_balanced_female_male_pairs = min(n_female, n_male)
+```
+
+This count determines whether a label is eligible for the min5 or min15 datasets.
+
+The count table is saved as:
+
+```text
+probe_balanced_pair_counts.csv
+```
+
+### Step 6: Dataset-Specific Speaker Selection
+
+The four dataset versions differ only here.
+
+#### 1. `first_language_country_min5_pairs`
+
+Inclusion rule:
+
+```text
+n_balanced_female_male_pairs >= 5
+```
+
+Speaker usage:
+
+```text
+use all speakers from every included label
+```
+
+This means labels are eligible if they have at least 5 female and 5 male speakers, but the actual probe uses all speakers in those labels. For example, if a label has 73 female and 33 male speakers, all 106 speakers are kept.
+
+Purpose:
+
+```text
+maximum label coverage while still requiring basic female/male support
+```
+
+Output folder:
+
+```text
+outputs/analysis/first_language_country_min5_pairs/
+```
+
+#### 2. `first_language_country_min5_pairs_balanced_sex`
+
+Inclusion rule:
+
+```text
+n_balanced_female_male_pairs >= 5
+```
+
+Speaker usage:
+
+```text
+sample exactly 5 female + 5 male speakers per included label
+```
+
+Sampling is random but reproducible using the configured random seed. Speakers not selected by the balanced sample are not used in that run.
+
+Purpose:
+
+```text
+strict sex-balanced robustness check with broad label coverage
+```
+
+Important caveat:
+
+```text
+only 10 speakers per label, so probe results can be noisy and data-starved
+```
+
+Output folder:
+
+```text
+outputs/analysis/first_language_country_min5_pairs_balanced_sex/
+```
+
+Additional output:
+
+```text
+probe_balanced_sample_counts.csv
+```
+
+#### 3. `first_language_country_min15_pairs`
+
+Inclusion rule:
+
+```text
+n_balanced_female_male_pairs >= 15
+```
+
+Speaker usage:
+
+```text
+use all speakers from every included label
+```
+
+This is stricter than min5, so it includes fewer labels but each included label has stronger female/male support.
+
+Purpose:
+
+```text
+higher-confidence all-speaker probe with fewer, larger classes
+```
+
+Output folder:
+
+```text
+outputs/analysis/first_language_country_min15_pairs/
+```
+
+#### 4. `first_language_country_min15_pairs_balanced_sex`
+
+Inclusion rule:
+
+```text
+n_balanced_female_male_pairs >= 15
+```
+
+Speaker usage:
+
+```text
+sample exactly 15 female + 15 male speakers per included label
+```
+
+Sampling is random but reproducible using the configured random seed.
+
+Purpose:
+
+```text
+preferred balanced-sex robustness check because it has 30 speakers per label
+```
+
+Output folder:
+
+```text
+outputs/analysis/first_language_country_min15_pairs_balanced_sex/
+```
+
+Additional output:
+
+```text
+probe_balanced_sample_counts.csv
+```
+
+### Step 7: Final Probe Feature Index
+
+After all filtering and optional balanced sampling, the exact selected rows are written to:
+
+```text
+probe_feature_index_filtered.csv
+```
+
+This file is the definitive record of which speakers were used in a specific model/dataset probe run. It includes the selected labels, metadata, feature paths, and filter columns.
+
+For any result, the corresponding `probe_feature_index_filtered.csv` is the file to inspect when asking:
+
+```text
+Which speakers were actually included?
+Which labels were included?
+How many examples per label were used?
+Was this an all-speaker or balanced-sex dataset?
+```
+
+### Step 8: Train/Test Splitting Inside The Probe
+
+Once the final dataset has been constructed, the probe code performs repeated train/test splits.
+
+The split procedure is:
+
+```text
+StratifiedShuffleSplit
+```
+
+with:
+
+```text
+test_size = 0.2
+n_splits = 5
+random_seed = 42
+```
+
+unless overridden in the CLI/config.
+
+Stratification means every train/test split tries to preserve label proportions. For example, if the final dataset has 8 labels, every split attempts to place examples from all 8 labels into both train and test.
+
+Important:
+
+```text
+The train/test split happens after speaker filtering and after balanced-sex sampling.
+```
+
+So for min15 balanced-sex:
+
+1. First select exactly 15 female and 15 male speakers per label.
+2. Then split those 30 speakers per label into train/test folds.
+
+With `test_size=0.2`, approximately:
+
+```text
+24 train speakers per label
+6 test speakers per label
+```
+
+For min5 balanced-sex:
+
+1. First select exactly 5 female and 5 male speakers per label.
+2. Then split those 10 speakers per label into train/test folds.
+
+With `test_size=0.2`, approximately:
+
+```text
+8 train speakers per label
+2 test speakers per label
+```
+
+This is why min5 balanced-sex is likely too small for stable probe training.
+
+### Step 9: Layer-Wise Probe Training
+
+For each split and each layer:
+
+1. Load `pooled_hidden_states[layer]` for every selected speaker.
+2. Fit a `StandardScaler` on the train embeddings only.
+3. Train logistic regression on the scaled train embeddings.
+4. Evaluate on the held-out test embeddings.
+
+The logistic regression uses class weighting by default:
+
+```text
+class_weight = balanced
+```
+
+This helps with label imbalance in the all-speaker datasets.
+
+### Step 10: Baselines
+
+Every probe run also evaluates:
+
+```text
+majority baseline
+stratified random baseline
+```
+
+These are written into:
+
+```text
+layerwise_probe_split_results.csv
+layerwise_probe_results.csv
+```
+
+The probe is meaningful only if it exceeds these baselines, especially on macro F1 and balanced accuracy.
+
+### Step 11: Best Layer Selection
+
+The best layer is selected by:
+
+```text
+highest macro_f1_mean among linear_probe rows
+```
+
+Ties are resolved by balanced accuracy and then by lower layer index.
+
+The best layer is used for:
+
+```text
+best_layer_confusion_matrix.csv
+centroid_clustering_best_layer/
+```
+
+### Step 12: Centroid Clustering Dataset
+
+Centroid clustering uses exactly the same speakers as the corresponding probe run:
+
+```text
+probe_feature_index_filtered.csv
+```
+
+It does not rerun dataset filtering. It reads the final selected feature index and computes one centroid per label at the best probe layer.
+
+Therefore:
+
+- min5 all-speaker clustering uses all selected min5 speakers.
+- min5 balanced-sex clustering uses exactly 5F + 5M per label.
+- min15 all-speaker clustering uses all selected min15 speakers.
+- min15 balanced-sex clustering uses exactly 15F + 15M per label.
+
+This guarantees that probe results and centroid plots correspond to the same dataset version.
+
 ## Layer-Wise Linear Probing
 
 For each dataset and model:
