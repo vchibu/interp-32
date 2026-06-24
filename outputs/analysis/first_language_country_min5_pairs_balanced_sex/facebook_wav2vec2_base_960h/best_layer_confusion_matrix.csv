@@ -1,0 +1,27 @@
+true_label,dutch__netherlands,mandarin__china,spanish__colombia,russian__russia,turkish__turkey,macedonian__macedonia,italian__italy,arabic__saudi arabia,dutch__belgium,english__usa,portuguese__brazil,polish__poland,thai__thailand,french__canada,french__france,cantonese__china,english__australia,japanese__japan,tajiki__tajikistan,farsi__iran,hindi__india,english__uk,korean__south korea,english__canada,german__germany,estonian__estonia
+dutch__netherlands,4,0,0,0,0,0,0,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+mandarin__china,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,2,0,0,0,0,1,0,0,0
+spanish__colombia,0,0,1,1,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0,4,0,0,0,0,0,1
+russian__russia,0,1,0,2,0,0,1,0,0,0,0,2,0,1,2,0,0,0,0,0,0,0,0,0,1,0
+turkish__turkey,0,0,0,0,7,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0
+macedonian__macedonia,0,0,2,0,0,6,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+italian__italy,0,0,0,0,0,0,3,0,0,0,1,0,0,2,2,1,0,0,0,0,0,0,0,0,1,0
+arabic__saudi arabia,0,1,0,0,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,1,0,1
+dutch__belgium,1,0,0,0,1,0,0,0,4,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,0
+english__usa,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0
+portuguese__brazil,0,0,1,0,1,1,0,0,1,0,2,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0
+polish__poland,0,0,0,1,0,2,3,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+thai__thailand,0,0,0,0,0,0,2,0,0,0,0,1,5,0,0,0,0,1,0,0,0,0,1,0,0,0
+french__canada,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,1,0,0,0,4,0,0
+french__france,0,0,0,0,0,0,0,0,2,0,1,0,2,0,1,0,0,0,0,0,0,0,2,0,0,2
+cantonese__china,1,2,0,0,1,0,0,0,0,0,0,0,1,0,2,1,0,0,0,0,0,0,1,0,1,0
+english__australia,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,4,0,1,0,0
+japanese__japan,0,0,5,0,0,0,0,0,0,2,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0
+tajiki__tajikistan,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,8,1,0,0,0,0,0,0
+farsi__iran,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,2,1,3,0,0,1,0,0,0
+hindi__india,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,6,0,0,0,0,0
+english__uk,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,1,0,0,0,0,5,0,0,0,1
+korean__south korea,0,0,1,0,0,0,0,1,1,0,0,0,0,0,2,0,0,0,0,0,0,0,3,1,0,1
+english__canada,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,2,0,0,0,0,0,0,4,0,0
+german__germany,0,0,0,1,1,0,0,0,5,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+estonian__estonia,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,0,6

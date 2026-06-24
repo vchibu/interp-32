@@ -2,6 +2,8 @@
 
 Starter scaffold for preparing the Speech Accent Archive dataset, extracting hidden states from `wav2vec2`, and analyzing internal dimensions layer by layer.
 
+See `docs/experiment_writeup.md` for the current experiment rationale, label definition, probe setup, centroid clustering setup, and poster-preparation notes.
+
 ## Intended workflow
 
 1. Scrape or provide the full Speech Accent Archive metadata in `data/raw/`.
@@ -154,17 +156,35 @@ Each clustering job uses `probe_feature_index_filtered.csv`, reads the best laye
 - `layer_<N>_centroid_dendrogram.png`
 - `layer_<N>_centroid_pca.png`
 
-To repeat the same probe, model-comparison, and centroid-clustering workflow with all groups that have at least 5 female/male pairs, submit:
+The current first-language/country experiments derive a stricter `first_language` label from `all_native_languages`, so broad labels such as `chinese;mandarin` are probed as `mandarin` rather than `chinese`.
+
+To repeat the probe, model-comparison, and centroid-clustering workflow with all first-language/country groups that have at least 5 female/male pairs, submit:
 
 ```bash
-base_job=$(sbatch --parsable jobs/run_probes_accent_country_min5_pairs_base.sh)
-finetuned_job=$(sbatch --parsable jobs/run_probes_accent_country_min5_pairs_base_960h.sh)
-plot_job=$(sbatch --parsable --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_accent_country_min5_pairs.sh)
-sbatch --dependency=afterok:$base_job jobs/cluster_centroids_accent_country_min5_pairs_base.sh
-sbatch --dependency=afterok:$finetuned_job jobs/cluster_centroids_accent_country_min5_pairs_base_960h.sh
+base_job=$(sbatch --parsable jobs/run_probes_first_language_country_min5_pairs_base.sh)
+finetuned_job=$(sbatch --parsable jobs/run_probes_first_language_country_min5_pairs_base_960h.sh)
+sbatch --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_first_language_country_min5_pairs.sh
+sbatch --dependency=afterok:$base_job jobs/cluster_centroids_first_language_country_min5_pairs_base.sh
+sbatch --dependency=afterok:$finetuned_job jobs/cluster_centroids_first_language_country_min5_pairs_base_960h.sh
 ```
 
-These outputs are written under `outputs/analysis/accent_country_min5_pairs/`.
+To run the balanced-sex robustness version, which samples exactly 5 female and 5 male speakers per included label, submit:
+
+```bash
+base_bal_job=$(sbatch --parsable jobs/run_probes_first_language_country_min5_pairs_balanced_base.sh)
+finetuned_bal_job=$(sbatch --parsable jobs/run_probes_first_language_country_min5_pairs_balanced_base_960h.sh)
+sbatch --dependency=afterok:$base_bal_job:$finetuned_bal_job jobs/plot_probe_comparison_first_language_country_min5_pairs_balanced.sh
+sbatch --dependency=afterok:$base_bal_job jobs/cluster_centroids_first_language_country_min5_pairs_balanced_base.sh
+sbatch --dependency=afterok:$finetuned_bal_job jobs/cluster_centroids_first_language_country_min5_pairs_balanced_base_960h.sh
+```
+
+These outputs are written under:
+
+- `outputs/analysis/first_language_country_min5_pairs/`
+- `outputs/analysis/first_language_country_min5_pairs_balanced_sex/`
+
+Historical broad-label outputs may still exist under `outputs/analysis/accent_country_min5_pairs/`,
+but current reruns should use the `first_language_country_*` jobs above.
 
 Dataset summary example:
 

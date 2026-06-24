@@ -1,0 +1,27 @@
+label,n_examples,n_female,n_male
+arabic__saudi arabia,10,5,5
+cantonese__china,10,5,5
+dutch__belgium,10,5,5
+dutch__netherlands,10,5,5
+english__australia,10,5,5
+english__canada,10,5,5
+english__uk,10,5,5
+english__usa,10,5,5
+estonian__estonia,10,5,5
+farsi__iran,10,5,5
+french__canada,10,5,5
+french__france,10,5,5
+german__germany,10,5,5
+hindi__india,10,5,5
+italian__italy,10,5,5
+japanese__japan,10,5,5
+korean__south korea,10,5,5
+macedonian__macedonia,10,5,5
+mandarin__china,10,5,5
+polish__poland,10,5,5
+portuguese__brazil,10,5,5
+russian__russia,10,5,5
+spanish__colombia,10,5,5
+tajiki__tajikistan,10,5,5
+thai__thailand,10,5,5
+turkish__turkey,10,5,5

@@ -1,0 +1,27 @@
+accent_country_label,n_examples,included
+arabic__saudi arabia,10,True
+cantonese__china,10,True
+dutch__belgium,10,True
+dutch__netherlands,10,True
+english__australia,10,True
+english__canada,10,True
+english__uk,10,True
+english__usa,10,True
+estonian__estonia,10,True
+farsi__iran,10,True
+french__canada,10,True
+french__france,10,True
+german__germany,10,True
+hindi__india,10,True
+italian__italy,10,True
+japanese__japan,10,True
+korean__south korea,10,True
+macedonian__macedonia,10,True
+mandarin__china,10,True
+polish__poland,10,True
+portuguese__brazil,10,True
+russian__russia,10,True
+spanish__colombia,10,True
+tajiki__tajikistan,10,True
+thai__thailand,10,True
+turkish__turkey,10,True

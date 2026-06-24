@@ -1,6 +1,6 @@
 accent_country_label,accent,country_of_birth,n_speakers,n_recordings,n_female,n_male,n_balanced_female_male_pairs,english_speaking_birth_country,n_unknown_residence_years,median_english_residence_years,max_english_residence_years
 english__usa,english,usa,432,432,219,213,213,True,0,27.0,93.0
-chinese__china,chinese,china,106,106,73,33,33,False,0,0.75,2.0
+mandarin__china,mandarin,china,94,94,66,28,28,False,0,0.45,2.0
 english__uk,english,uk,71,71,24,47,24,True,0,30.0,72.0
 arabic__saudi arabia,arabic,saudi arabia,55,55,22,33,22,False,0,0.9,2.0
 english__australia,english,australia,43,43,20,23,20,True,0,24.0,60.0
@@ -19,7 +19,6 @@ macedonian__macedonia,macedonian,macedonia,24,24,17,7,7,False,0,0.0,2.0
 italian__italy,italian,italy,23,23,7,16,7,False,0,0.1,1.0
 hindi__india,hindi,india,18,18,7,11,7,False,0,0.55,2.0
 thai__thailand,thai,thailand,15,15,9,6,6,False,0,0.5,2.0
-chinese__taiwan,chinese,taiwan,14,14,6,8,6,False,0,0.375,2.0
 tajiki__tajikistan,tajiki,tajikistan,14,14,8,6,6,False,0,0.0,0.1
 estonian__estonia,estonian,estonia,16,16,11,5,5,False,0,0.05,2.0
 french__canada,french,canada,14,14,5,9,5,True,0,25.5,64.0
@@ -27,6 +26,7 @@ dutch__netherlands,dutch,netherlands,13,13,5,8,5,False,0,0.1,1.5
 farsi__iran,farsi,iran,11,11,6,5,5,False,0,1.5,2.0
 spanish__colombia,spanish,colombia,11,11,6,5,5,False,0,1.0,2.0
 swedish__sweden,swedish,sweden,14,14,4,10,4,False,0,0.0,1.0
+mandarin__taiwan,mandarin,taiwan,10,10,4,6,4,False,0,0.2,2.0
 bosnian__bosnia and herzegovina,bosnian,bosnia and herzegovina,8,8,4,4,4,False,0,1.3,2.0
 english__new zealand,english,new zealand,8,8,4,4,4,True,0,23.0,44.0
 miskito__nicaragua,miskito,nicaragua,11,11,3,8,3,False,0,0.0,0.2
@@ -49,9 +49,12 @@ marathi__india,marathi,india,6,6,2,4,2,False,0,0.25,1.0
 czech__czech republic,czech,czech republic,5,5,3,2,2,False,0,0.5,1.5
 norwegian__norway,norwegian,norway,5,5,2,3,2,False,0,0.3,0.8
 swiss german__switzerland,swiss german,switzerland,5,5,3,2,2,False,0,1.0,2.0
+taiwanese__taiwan,taiwanese,taiwan,5,5,3,2,2,False,0,0.5,1.7
 bahasa indonesia__indonesia,bahasa indonesia,indonesia,4,4,2,2,2,False,0,0.8500000000000001,1.2
 bengali__india,bengali,india,4,4,2,2,2,False,0,0.5,2.0
 kazakh__kazakhstan,kazakh,kazakhstan,4,4,2,2,2,False,0,0.35,0.5
+wu__china,wu,china,4,4,2,2,2,False,0,0.65,1.0
+xiang__china,xiang,china,4,4,2,2,2,False,0,1.0,2.0
 spanish__mexico,spanish,mexico,8,8,1,7,1,False,0,0.0,2.0
 spanish__venezuela,spanish,venezuela,8,8,1,7,1,False,0,0.35,2.0
 kannada__india,kannada,india,7,7,1,6,1,False,0,0.3,2.0
@@ -121,12 +124,13 @@ arabic__libya,arabic,libya,2,2,2,0,0,False,0,1.15,2.0
 armenian__armenia,armenian,armenia,2,2,2,0,0,False,0,0.75,1.0
 belarusan__belarus,belarusan,belarus,2,2,0,2,0,False,0,0.0,0.0
 bengali__bangladesh,bengali,bangladesh,2,2,0,2,0,False,0,1.25,1.5
-chinese__usa,chinese,usa,2,2,0,2,0,True,0,19.0,22.0
 french__ivory coast,french,ivory coast,2,2,2,0,0,False,0,1.75,2.0
+hakka__china,hakka,china,2,2,2,0,0,False,0,0.5,1.0
 kirghiz__kyrgystan,kirghiz,kyrgystan,2,2,2,0,0,False,0,0.3,0.5
 kiswahili__tanzania,kiswahili,tanzania,2,2,0,2,0,False,0,0.3,0.3
 konkani__india,konkani,india,2,2,0,2,0,False,0,0.15000000000000002,0.2
 kurdi__iraq,kurdi,iraq,2,2,0,2,0,False,0,1.25,1.5
+mandarin__usa,mandarin,usa,2,2,0,2,0,True,0,19.0,22.0
 mauritian__mauritius,mauritian,mauritius,2,2,0,2,0,False,0,0.30000000000000004,0.4
 portuguese__angola,portuguese,angola,2,2,0,2,0,False,0,1.0,1.0
 slovak__slovak republic,slovak,slovak republic,2,2,2,0,0,False,0,0.44999999999999996,0.6
@@ -152,7 +156,6 @@ bengali__usa,bengali,usa,1,1,1,0,0,True,0,22.0,22.0
 bisayan__philippines,bisayan,philippines,1,1,1,0,0,False,0,0.6,0.6
 burmese__myanmar,burmese,myanmar,1,1,1,0,0,False,0,1.5,1.5
 chamorro__northern mariana islands,chamorro,northern mariana islands,1,1,0,1,0,False,0,0.2,0.2
-chinese__singapore,chinese,singapore,1,1,0,1,0,False,0,1.0,1.0
 dholuo__kenya,dholuo,kenya,1,1,0,1,0,False,0,2.0,2.0
 djola__senegal,djola,senegal,1,1,0,1,0,False,0,0.0,0.0
 dutch__south korea,dutch,south korea,1,1,1,0,0,False,0,0.0,0.0
@@ -174,6 +177,7 @@ gaddang__philippines,gaddang,philippines,1,1,0,1,0,False,0,0.2,0.2
 garifuna__belize,garifuna,belize,1,1,1,0,0,False,0,0.0,0.0
 german__switzerland,german,switzerland,1,1,0,1,0,False,0,0.5,0.5
 gujarati__ireland,gujarati,ireland,1,1,1,0,0,True,0,3.0,3.0
+hainanese__singapore,hainanese,singapore,1,1,0,1,0,False,0,1.0,1.0
 hausa__nigeria,hausa,nigeria,1,1,1,0,0,False,0,0.0,0.0
 hiligaynon__philippines,hiligaynon,philippines,1,1,1,0,0,False,0,1.3,1.3
 hindi__usa,hindi,usa,1,1,0,1,0,True,0,19.0,19.0
@@ -204,10 +208,11 @@ malayalam__united arab emirates,malayalam,united arab emirates,1,1,1,0,0,False,0
 maltese__malta,maltese,malta,1,1,1,0,0,False,0,0.0,0.0
 mancagne__senegal,mancagne,senegal,1,1,0,1,0,False,0,0.0,0.0
 mandarin__malaysia,mandarin,malaysia,1,1,1,0,0,False,0,0.1,0.1
-mandarin__taiwan,mandarin,taiwan,1,1,1,0,0,False,0,0.2,0.2
 mandingue__senegal,mandingue,senegal,1,1,0,1,0,False,0,0.0,0.0
+min nan__china,min nan,china,1,1,0,1,0,False,0,2.0,2.0
 mongolian__china,mongolian,china,1,1,0,1,0,False,0,1.5,1.5
 montenegrin__montenegro,montenegrin,montenegro,1,1,1,0,0,False,0,1.0,1.0
+naxi__china,naxi,china,1,1,1,0,0,False,0,1.0,1.0
 northern sotho__south africa,northern sotho,south africa,1,1,1,0,0,True,0,36.0,36.0
 oriya__india,oriya,india,1,1,0,1,0,False,0,0.0,0.0
 ossetic__russia,ossetic,russia,1,1,1,0,0,False,0,0.0,0.0

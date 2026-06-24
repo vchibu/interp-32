@@ -14,6 +14,7 @@ from src.analysis.layerwise_probes import run_probe_analysis
 from src.analysis.probe_group_summary import (
     DEFAULT_ENGLISH_SPEAKING_COUNTRIES,
     add_accent_country_probe_filter,
+    balanced_sample_by_label_and_sex,
     keep_groups_with_min_balanced_sex_pairs,
     save_probe_group_summary,
     summarize_accent_country_probe_groups,
@@ -98,7 +99,7 @@ def main() -> None:
     probes_parser.add_argument(
         "--accent-country-filter",
         action="store_true",
-        help="Use native_language + country_of_origin labels and exclude >2y English residence outside English-speaking birth countries",
+        help="Use first_language + country_of_origin labels and exclude >2y English residence outside English-speaking birth countries",
     )
     probes_parser.add_argument("--max-non-english-country-residence-years", type=float, default=2.0)
     probes_parser.add_argument(
@@ -111,6 +112,12 @@ def main() -> None:
         type=int,
         default=None,
         help="Only keep labels with at least this many female/male pairs; requires --accent-country-filter",
+    )
+    probes_parser.add_argument(
+        "--balanced-sex-sample-size",
+        type=int,
+        default=None,
+        help="Sample exactly this many female and male speakers per label; requires --accent-country-filter",
     )
 
     summary_parser = subparsers.add_parser("summarize-accent-groups", help="Summarize largest accent groups from raw metadata")
@@ -129,7 +136,7 @@ def main() -> None:
     probe_groups_parser.add_argument("--manifest-path", default=None)
     probe_groups_parser.add_argument("--output-path", default=None)
     probe_groups_parser.add_argument("--filtered-output-path", default=None)
-    probe_groups_parser.add_argument("--accent-field", default="native_language")
+    probe_groups_parser.add_argument("--accent-field", default="first_language")
     probe_groups_parser.add_argument("--country-field", default="country_of_origin")
     probe_groups_parser.add_argument("--sex-field", default="sex")
     probe_groups_parser.add_argument("--english-residence-years-field", default="length_of_english_residence")
@@ -281,6 +288,7 @@ def main() -> None:
         analysis_dir.mkdir(parents=True, exist_ok=True)
         feature_index = _read_csv(input_path)
         balanced_pair_counts = None
+        balanced_sample_counts = None
         if args.accent_country_filter:
             feature_index = add_accent_country_probe_filter(
                 manifest=feature_index,
@@ -295,8 +303,18 @@ def main() -> None:
                     sex_field="probe_sex",
                     min_balanced_sex_pairs=args.min_balanced_sex_pairs,
                 )
+            if args.balanced_sex_sample_size is not None:
+                feature_index, balanced_sample_counts = balanced_sample_by_label_and_sex(
+                    manifest=feature_index,
+                    label_field="accent_country_label",
+                    sex_field="probe_sex",
+                    n_per_sex=args.balanced_sex_sample_size,
+                    random_state=args.random_seed if args.random_seed is not None else config["analysis"]["random_seed"],
+                )
         elif args.min_balanced_sex_pairs is not None:
             raise ValueError("--min-balanced-sex-pairs requires --accent-country-filter")
+        elif args.balanced_sex_sample_size is not None:
+            raise ValueError("--balanced-sex-sample-size requires --accent-country-filter")
         label_field = args.label_field or ("accent_country_label" if args.accent_country_filter else config["dataset"]["label_field"])
         min_examples_per_label = (
             args.min_examples_per_label
@@ -324,6 +342,7 @@ def main() -> None:
         split_path = analysis_dir / "layerwise_probe_split_results.csv"
         class_counts_path = analysis_dir / "probe_class_counts.csv"
         balanced_pair_counts_path = analysis_dir / "probe_balanced_pair_counts.csv"
+        balanced_sample_counts_path = analysis_dir / "probe_balanced_sample_counts.csv"
         filtered_index_path = analysis_dir / "probe_feature_index_filtered.csv"
         confusion_path = analysis_dir / "best_layer_confusion_matrix.csv"
         plot_path = analysis_dir / "layerwise_probe_macro_f1.png"
@@ -332,6 +351,8 @@ def main() -> None:
         probe_result.class_counts.to_csv(class_counts_path, index=False)
         if balanced_pair_counts is not None:
             balanced_pair_counts.to_csv(balanced_pair_counts_path, index=False)
+        if balanced_sample_counts is not None:
+            balanced_sample_counts.to_csv(balanced_sample_counts_path, index=False)
         probe_result.filtered_feature_index.to_csv(filtered_index_path, index=False)
         probe_result.best_layer_confusion_matrix.to_csv(confusion_path, index=False)
         from src.analysis.plot_probe_results import plot_layerwise_probe_summary
@@ -372,6 +393,8 @@ def main() -> None:
         print(f"Probe class counts written to {class_counts_path}")
         if balanced_pair_counts is not None:
             print(f"Balanced pair counts written to {balanced_pair_counts_path}")
+        if balanced_sample_counts is not None:
+            print(f"Balanced sample counts written to {balanced_sample_counts_path}")
         print(f"Best-layer confusion matrix written to {confusion_path}")
         print(f"Layer plot written to {plot_path}")
         print(f"Dimension ranking written to {mi_path}")

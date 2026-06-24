@@ -1,0 +1,27 @@
+accent_country_label,available_female,available_male,included_in_balanced_sample,sampled_female,sampled_male
+arabic__saudi arabia,22,33,True,5,5
+cantonese__china,12,10,True,5,5
+dutch__belgium,20,7,True,5,5
+dutch__netherlands,5,8,True,5,5
+english__australia,20,23,True,5,5
+english__canada,18,28,True,5,5
+english__uk,24,47,True,5,5
+english__usa,219,213,True,5,5
+estonian__estonia,11,5,True,5,5
+farsi__iran,6,5,True,5,5
+french__canada,5,9,True,5,5
+french__france,11,11,True,5,5
+german__germany,10,12,True,5,5
+hindi__india,7,11,True,5,5
+italian__italy,7,16,True,5,5
+japanese__japan,8,8,True,5,5
+korean__south korea,23,16,True,5,5
+macedonian__macedonia,17,7,True,5,5
+mandarin__china,66,28,True,5,5
+polish__poland,10,18,True,5,5
+portuguese__brazil,14,17,True,5,5
+russian__russia,16,17,True,5,5
+spanish__colombia,6,5,True,5,5
+tajiki__tajikistan,8,6,True,5,5
+thai__thailand,9,6,True,5,5
+turkish__turkey,10,19,True,5,5

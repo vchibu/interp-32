@@ -1,0 +1,27 @@
+true_label,english__usa,mandarin__china,english__uk,arabic__saudi arabia,english__canada,english__australia,korean__south korea,russian__russia,portuguese__brazil,turkish__turkey,polish__poland,dutch__belgium,macedonian__macedonia,italian__italy,cantonese__china,french__france,german__germany,hindi__india,estonian__estonia,japanese__japan,thai__thailand,french__canada,tajiki__tajikistan,dutch__netherlands,farsi__iran,spanish__colombia
+english__usa,384,0,3,1,34,2,1,0,1,0,1,0,0,0,0,0,0,0,0,1,0,2,0,0,0,0
+mandarin__china,0,81,0,0,0,0,4,1,0,0,1,0,0,2,4,1,1,0,0,0,0,0,0,0,0,0
+english__uk,3,1,63,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0
+arabic__saudi arabia,2,1,0,46,0,0,0,1,0,0,0,0,0,2,0,0,0,1,0,0,0,1,0,0,0,1
+english__canada,37,0,0,0,5,0,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,0,0
+english__australia,0,0,1,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+korean__south korea,0,5,0,0,0,0,24,0,4,1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1,1
+russian__russia,0,1,0,0,1,0,4,23,1,0,2,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0
+portuguese__brazil,0,0,0,0,1,0,1,1,13,0,0,0,0,4,0,3,0,0,4,1,1,0,0,0,0,1
+turkish__turkey,1,3,0,1,1,0,2,2,1,16,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0
+polish__poland,0,2,3,2,0,0,0,5,0,4,11,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0
+dutch__belgium,0,0,1,0,1,0,0,0,0,0,0,21,0,0,0,0,0,0,0,0,0,0,0,2,0,0
+macedonian__macedonia,0,0,0,0,0,0,0,0,0,0,0,0,24,0,0,0,0,0,1,0,0,0,0,0,0,0
+italian__italy,0,0,2,1,0,0,0,2,3,4,1,0,0,7,0,1,0,0,2,0,0,1,0,1,0,0
+cantonese__china,0,8,0,0,0,1,2,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0
+french__france,1,0,2,1,0,0,0,1,3,0,0,0,0,1,1,4,1,1,2,1,0,0,0,1,0,0
+german__germany,2,0,4,1,0,0,0,0,0,0,0,2,0,1,0,1,6,0,2,0,0,0,0,0,0,1
+hindi__india,0,0,0,0,0,0,0,1,0,2,0,0,0,0,0,1,0,16,0,0,0,0,0,0,0,0
+estonian__estonia,2,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,11,0,0,0,0,0,0,0
+japanese__japan,0,3,0,1,0,0,2,2,0,0,0,1,0,0,0,1,0,1,0,3,0,0,0,0,0,1
+thai__thailand,0,2,0,0,0,0,0,0,4,1,1,0,0,1,2,0,0,0,0,0,4,0,0,0,0,0
+french__canada,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,7,0,1,0,0
+tajiki__tajikistan,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,14,0,0,0
+dutch__netherlands,0,0,1,0,0,0,0,0,1,1,0,2,0,0,0,0,1,0,1,0,0,0,0,8,0,0
+farsi__iran,0,2,0,1,0,0,0,0,0,3,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,1
+spanish__colombia,0,1,0,0,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,0,0,1,3

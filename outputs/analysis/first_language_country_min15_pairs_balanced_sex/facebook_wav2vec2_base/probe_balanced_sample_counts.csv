@@ -1,0 +1,9 @@
+accent_country_label,available_female,available_male,included_in_balanced_sample,sampled_female,sampled_male
+arabic__saudi arabia,22,33,True,15,15
+english__australia,20,23,True,15,15
+english__canada,18,28,True,15,15
+english__uk,24,47,True,15,15
+english__usa,219,213,True,15,15
+korean__south korea,23,16,True,15,15
+mandarin__china,66,28,True,15,15
+russian__russia,16,17,True,15,15
