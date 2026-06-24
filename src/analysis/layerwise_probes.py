@@ -91,6 +91,21 @@ def load_pooled_embeddings(feature_paths: Sequence[str]) -> np.ndarray:
     return np.stack(arrays, axis=0)
 
 
+def load_pooled_cnn_features(feature_paths: Sequence[str]) -> np.ndarray | None:
+    """Load the pooled raw CNN feature-encoder output for each recording.
+
+    Returns None if any cache predates the CNN baseline, so callers can simply
+    skip the baseline rather than crash on legacy feature stores.
+    """
+    arrays = []
+    for feature_path in feature_paths:
+        with np.load(feature_path) as data:
+            if "pooled_cnn_features" not in data.files:
+                return None
+            arrays.append(data["pooled_cnn_features"])
+    return np.stack(arrays, axis=0)
+
+
 def _metric_dict(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:
     return {
         "accuracy": float(accuracy_score(y_true, y_pred)),
@@ -110,6 +125,9 @@ def _make_probe(class_weight: str | None, max_iter: int) -> object:
     )
 
 
+CNN_BASELINE_LAYER = -2
+
+
 def probe_by_layer(
     embeddings: np.ndarray,
     labels: Sequence[str],
@@ -118,10 +136,16 @@ def probe_by_layer(
     n_splits: int = 5,
     class_weight: str | None = "balanced",
     max_iter: int = 2000,
+    cnn_features: np.ndarray | None = None,
 ) -> pd.DataFrame:
     """Train repeated linear probes for every layer on pooled utterance embeddings.
 
     embeddings shape: (n_samples, n_layers, hidden_size)
+
+    When ``cnn_features`` (n_samples, cnn_dim) is given, an extra probe is trained
+    on the raw CNN feature-encoder output as an input baseline. It is recorded
+    with model ``"cnn_baseline"`` at layer ``CNN_BASELINE_LAYER`` so it stays
+    separate from the per-transformer-layer ``"linear_probe"`` curve.
     """
     y = np.asarray(labels)
     splitter = StratifiedShuffleSplit(
@@ -150,6 +174,20 @@ def probe_by_layer(
                 "n_test": int(len(test_idx)),
             }
             row.update(_metric_dict(y_test, baseline_preds))
+            results.append(row)
+
+        if cnn_features is not None:
+            clf = _make_probe(class_weight=class_weight, max_iter=max_iter)
+            clf.fit(cnn_features[train_idx], y_train)
+            cnn_preds = clf.predict(cnn_features[test_idx])
+            row = {
+                "layer": CNN_BASELINE_LAYER,
+                "split": split_idx,
+                "model": "cnn_baseline",
+                "n_train": int(len(train_idx)),
+                "n_test": int(len(test_idx)),
+            }
+            row.update(_metric_dict(y_test, cnn_preds))
             results.append(row)
 
         for layer_idx in range(embeddings.shape[1]):
@@ -239,6 +277,7 @@ def run_probe_analysis(
         exclude_labels=exclude_labels,
     )
     embeddings = load_pooled_embeddings(filtered["feature_path"].tolist())
+    cnn_features = load_pooled_cnn_features(filtered["feature_path"].tolist())
     labels = filtered[label_field].astype(str).tolist()
     split_results = probe_by_layer(
         embeddings=embeddings,
@@ -248,6 +287,7 @@ def run_probe_analysis(
         n_splits=n_splits,
         class_weight=class_weight,
         max_iter=max_iter,
+        cnn_features=cnn_features,
     )
     layer_summary = summarize_probe_splits(split_results)
     probe_summary = layer_summary[layer_summary["model"].eq("linear_probe")].copy()

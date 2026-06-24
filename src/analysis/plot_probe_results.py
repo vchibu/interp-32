@@ -45,7 +45,12 @@ def plot_layerwise_probe_summary(
         color="#1f77b4",
     )
 
-    baseline_colors = {"majority": "#7f7f7f", "stratified": "#bcbd22"}
+    baseline_colors = {"majority": "#7f7f7f", "stratified": "#bcbd22", "cnn_baseline": "#d62728"}
+    baseline_labels = {
+        "majority": "majority baseline",
+        "stratified": "stratified baseline",
+        "cnn_baseline": "CNN front-end probe",
+    }
     for baseline_name, baseline in summary[summary["model"].ne("linear_probe")].groupby("model"):
         value = float(baseline[mean_column].mean())
         ax.axhline(
@@ -53,7 +58,7 @@ def plot_layerwise_probe_summary(
             linestyle="--",
             linewidth=1.5,
             color=baseline_colors.get(baseline_name, "#999999"),
-            label=f"{baseline_name} baseline",
+            label=baseline_labels.get(baseline_name, f"{baseline_name} baseline"),
         )
 
     metric_label = METRIC_LABELS.get(metric, metric)

@@ -48,10 +48,15 @@ def extract_utterance_embeddings(
         pooled = mean_pool(layer_hidden, inputs.get("attention_mask"))
         pooled_layers.append(pooled.squeeze(0).cpu().numpy())
 
+    # Raw CNN feature-encoder output (pre-transformer), mean-pooled over time.
+    # Time length differs from the transformer hidden states, so pool unmasked.
+    pooled_cnn = outputs.extract_features.mean(dim=1).squeeze(0).cpu().numpy()
+
     return {
         "audio_path": str(audio_path),
         "extract_features": outputs.extract_features.squeeze(0).cpu().numpy(),
         "pooled_hidden_states": np.stack(pooled_layers, axis=0),
+        "pooled_cnn_features": pooled_cnn,
     }
 
 
@@ -79,16 +84,19 @@ def extract_from_manifest(
 
         if artifact_path.exists() and not overwrite:
             with np.load(artifact_path, allow_pickle=False) as cached:
-                pooled_hidden_states = cached["pooled_hidden_states"]
-                index_row["n_layers"] = int(pooled_hidden_states.shape[0])
-                index_row["hidden_size"] = int(pooled_hidden_states.shape[1])
-            index_rows.append(index_row)
-            continue
+                # Recompute legacy caches that predate the pooled CNN baseline.
+                if "pooled_cnn_features" in cached.files:
+                    pooled_hidden_states = cached["pooled_hidden_states"]
+                    index_row["n_layers"] = int(pooled_hidden_states.shape[0])
+                    index_row["hidden_size"] = int(pooled_hidden_states.shape[1])
+                    index_rows.append(index_row)
+                    continue
 
         result = extract_utterance_embeddings(audio_path, bundle, sample_rate=sample_rate)
 
         save_payload: dict[str, Any] = {
             "pooled_hidden_states": result["pooled_hidden_states"],
+            "pooled_cnn_features": result["pooled_cnn_features"],
             "audio_path": result["audio_path"],
             "speaker_id": row["speaker_id"],
             "model_name": bundle.model.name_or_path,
