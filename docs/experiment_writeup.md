@@ -793,6 +793,126 @@ Suggested poster figures:
 3. Layer-wise macro F1 for min10 and min15 balanced-sex.
 4. Best-layer confusion matrix.
 5. Centroid distance heatmap or dendrogram.
+6. Multilingual comparison: layer-wise macro F1 for wav2vec2-large-lv60-self (English) vs XLS-R (multilingual) on min10 balanced-sex.
+7. Centroid dendrogram comparison between English-only and multilingual models at their respective best layers.
+
+## Multilingual Pretraining Extension
+
+The main grid uses two English-only wav2vec2 checkpoints. The multilingual extension asks whether pretraining on many languages changes where accent information is represented.
+
+### Research Questions
+
+1. Is first-language/country information more linearly decodable from a multilingual model than from an English-only model?
+2. Does the best probe layer shift between English-only and multilingual pretraining?
+3. Do centroid distance structures (language-family clustering) differ between the two models?
+
+### Model Pair
+
+Both models are self-supervised, same architecture (wav2vec2-large, 24 Transformer layers, hidden dim 1024), same objective. This isolates the effect of pretraining language coverage.
+
+| Model | Params | Pretraining data | Languages |
+|---|---:|---|---|
+| `facebook/wav2vec2-large-lv60-self` | ~316M | LibriSpeech-LV-60k + 960h (~960h) | English only |
+| `facebook/wav2vec2-xls-r-300m` | ~300M | ~436k hours | 128 languages |
+
+Feature shape per recording (both large models):
+
+```text
+pooled_hidden_states: (25, 1024)
+```
+
+Layer 0 is the feature-projection output; layers 1-24 are Transformer layers.
+
+### Dataset
+
+The multilingual extension uses the min10 balanced-sex dataset:
+
+```text
+first_language_country_min10_pairs_balanced_sex
+```
+
+- Inclusion: labels with at least 10 female/male pairs.
+- Sampling: exactly 10 female + 10 male speakers per label (20 total).
+- Split: StratifiedShuffleSplit, test_size=0.2, n_splits=5, seed=42.
+
+This gives 16 train + 4 test speakers per label per fold. It is the middle-ground robustness check: more stable than min5 balanced-sex (10 per label) but still sex-balanced.
+
+### Output Directory
+
+```text
+outputs/analysis/first_language_country_min10_pairs_balanced_sex/
+```
+
+Per-model subdirectories:
+
+```text
+facebook_wav2vec2_large_lv60_self/
+facebook_wav2vec2_xls_r_300m/
+```
+
+Each contains the same outputs as the main grid:
+
+```text
+layerwise_probe_results.csv
+layerwise_probe_split_results.csv
+probe_class_counts.csv
+probe_balanced_pair_counts.csv
+probe_balanced_sample_counts.csv
+probe_feature_index_filtered.csv
+best_layer_confusion_matrix.csv
+layerwise_probe_macro_f1.png
+centroid_clustering_best_layer/
+```
+
+The comparison plot is written to:
+
+```text
+outputs/analysis/first_language_country_min10_pairs_balanced_sex/model_comparison_macro_f1_multilingual.png
+```
+
+### Confounds And Limitations
+
+- XLS-R was pretrained on more total audio (~436k h vs 960h). This is unavoidable because multilingual models need more data. The comparison therefore conflates language coverage with data volume.
+- Parameter count differs slightly (316M vs 300M, ~5%). This is within noise for probing.
+- Accent is not the same as language. Multilingual pretraining may help language identification but accent is intra-/cross-language phonetic variation, so the prediction is genuinely uncertain.
+
+### Citations
+
+- Babu et al. (2021). XLS-R: Self-supervised Cross-lingual Speech Representation Learning at Scale. arXiv:2111.09296.
+- Conneau et al. (2021). Unsupervised Cross-lingual Representation Learning for Speech Recognition. arXiv:2006.13979.
+
+### Run The Multilingual Extension
+
+First extract hidden states for both large models (one-time cost per model):
+
+```bash
+sbatch jobs/extract_hidden_states_large_lv60_self_h100.sh
+sbatch jobs/extract_hidden_states_xls_r_300m_h100.sh
+```
+
+Then submit the probe + comparison + clustering grid:
+
+```bash
+bash jobs/submit_multilingual_min10_balanced_experiment.sh
+```
+
+This submits:
+
+```text
+2 probe jobs (one per model)
+1 comparison plot (dependency on both probes)
+2 centroid clustering jobs (one per model, dependency on respective probe)
+```
+
+Or run individual variants:
+
+```bash
+lv60_job=$(sbatch --parsable jobs/run_probes_first_language_country_min10_pairs_balanced_large_lv60_self.sh)
+xlsr_job=$(sbatch --parsable jobs/run_probes_first_language_country_min10_pairs_balanced_xls_r_300m.sh)
+sbatch --dependency=afterok:$lv60_job:$xlsr_job jobs/plot_probe_comparison_first_language_country_min10_pairs_balanced_multilingual.sh
+sbatch --dependency=afterok:$lv60_job jobs/cluster_centroids_first_language_country_min10_pairs_balanced_large_lv60_self.sh
+sbatch --dependency=afterok:$xlsr_job jobs/cluster_centroids_first_language_country_min10_pairs_balanced_xls_r_300m.sh
+```
 
 ## Limitations
 
@@ -801,6 +921,7 @@ Suggested poster figures:
 - Mean pooling discards temporal phonetic structure.
 - Balanced-sex runs reduce data and can be noisy.
 - Linear probes measure decodability, not causal model use.
+- Multilingual vs English-only comparison conflates language coverage with total pretraining hours (see Multilingual Pretraining Extension).
 
 ## Interpretation Rule Of Thumb
 
