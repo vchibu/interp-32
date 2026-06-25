@@ -95,7 +95,7 @@ pooled_hidden_states: (13, 768)
 
 Layer 0 is the feature-projection output; layers 1-12 are Transformer layers.
 
-## Standardized Four-Dataset Grid
+## Standardized Dataset Grid
 
 The current grid is:
 
@@ -103,12 +103,14 @@ The current grid is:
 |---|---:|---|---|
 | min5 all-speaker | at least 5 female/male pairs | all speakers in each included label | `outputs/analysis/first_language_country_min5_pairs/` |
 | min5 balanced-sex | at least 5 female/male pairs | exactly 5F + 5M per label | `outputs/analysis/first_language_country_min5_pairs_balanced_sex/` |
+| min10 all-speaker | at least 10 female/male pairs | all speakers in each included label | `outputs/analysis/first_language_country_min10_pairs/` |
+| min10 balanced-sex | at least 10 female/male pairs | exactly 10F + 10M per label | `outputs/analysis/first_language_country_min10_pairs_balanced_sex/` |
 | min15 all-speaker | at least 15 female/male pairs | all speakers in each included label | `outputs/analysis/first_language_country_min15_pairs/` |
 | min15 balanced-sex | at least 15 female/male pairs | exactly 15F + 15M per label | `outputs/analysis/first_language_country_min15_pairs_balanced_sex/` |
 
-All four datasets use the same code path, label definition, English-residence filter, models, metrics, plotting, and centroid clustering.
+All datasets use the same code path, label definition, English-residence filter, models, metrics, plotting, and centroid clustering.
 
-The min5 datasets include more labels but have smaller classes. The min15 datasets include fewer labels but provide more reliable estimates. The min5 balanced-sex dataset has only 10 examples per class, so it is mainly a strict stress test. The min15 balanced-sex dataset has 30 examples per class and is the preferred balanced robustness check.
+The min5 datasets include more labels but have smaller classes. The min10 datasets are the middle setting: fewer groups than min5, but less data-starved than the 5F/5M balanced run. The min15 datasets include fewer labels but provide more reliable estimates. The min5 balanced-sex dataset has only 10 examples per class, so it is mainly a strict stress test. The min10 balanced-sex dataset has 20 examples per class. The min15 balanced-sex dataset has 30 examples per class and is the preferred high-confidence balanced robustness check.
 
 ## Exact Dataset Construction And Splitting
 
@@ -119,7 +121,7 @@ dataset construction = which speakers are eligible and selected
 probe split = how the selected speakers are divided into train/test folds
 ```
 
-The same construction pipeline is used for all four dataset versions until the final all-speaker versus balanced-sex selection step.
+The same construction pipeline is used for all dataset versions until the final all-speaker versus balanced-sex selection step.
 
 ### Step 1: Start From The Model Feature Index
 
@@ -331,7 +333,69 @@ Additional output:
 probe_balanced_sample_counts.csv
 ```
 
-#### 3. `first_language_country_min15_pairs`
+#### 3. `first_language_country_min10_pairs`
+
+Inclusion rule:
+
+```text
+n_balanced_female_male_pairs >= 10
+```
+
+Speaker usage:
+
+```text
+use all speakers from every included label
+```
+
+This is the middle all-speaker setting. It keeps fewer labels than min5 but more labels than min15. Because all speakers are retained, it still uses natural class sizes, with stratified train/test splits and balanced logistic-regression class weights.
+
+Purpose:
+
+```text
+middle-coverage all-speaker probe with stronger class support than min5
+```
+
+Output folder:
+
+```text
+outputs/analysis/first_language_country_min10_pairs/
+```
+
+#### 4. `first_language_country_min10_pairs_balanced_sex`
+
+Inclusion rule:
+
+```text
+n_balanced_female_male_pairs >= 10
+```
+
+Speaker usage:
+
+```text
+sample exactly 10 female + 10 male speakers per included label
+```
+
+Sampling is random but reproducible using the configured random seed.
+
+Purpose:
+
+```text
+middle balanced-sex robustness check with 20 speakers per label
+```
+
+Output folder:
+
+```text
+outputs/analysis/first_language_country_min10_pairs_balanced_sex/
+```
+
+Additional output:
+
+```text
+probe_balanced_sample_counts.csv
+```
+
+#### 5. `first_language_country_min15_pairs`
 
 Inclusion rule:
 
@@ -359,7 +423,7 @@ Output folder:
 outputs/analysis/first_language_country_min15_pairs/
 ```
 
-#### 4. `first_language_country_min15_pairs_balanced_sex`
+#### 6. `first_language_country_min15_pairs_balanced_sex`
 
 Inclusion rule:
 
@@ -465,6 +529,20 @@ With `test_size=0.2`, approximately:
 ```
 
 This is why min5 balanced-sex is likely too small for stable probe training.
+
+For min10 balanced-sex:
+
+1. First select exactly 10 female and 10 male speakers per label.
+2. Then split those 20 speakers per label into train/test folds.
+
+With `test_size=0.2`, approximately:
+
+```text
+16 train speakers per label
+4 test speakers per label
+```
+
+This is the middle balanced setting: still smaller than the all-speaker datasets, but less data-starved than min5 balanced-sex.
 
 ### Step 9: Layer-Wise Probe Training
 
@@ -608,7 +686,7 @@ bash jobs/submit_first_language_country_experiment_grid.sh
 This submits:
 
 ```text
-4 datasets x 2 models = 8 probe jobs
+6 datasets x 2 models = 12 probe jobs
 ```
 
 and schedules comparison plots and centroid-clustering jobs with Slurm dependencies.
@@ -633,6 +711,26 @@ finetuned_job=$(sbatch --parsable jobs/run_probes_first_language_country_min5_pa
 sbatch --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_first_language_country_min5_pairs_balanced.sh
 sbatch --dependency=afterok:$base_job jobs/cluster_centroids_first_language_country_min5_pairs_balanced_base.sh
 sbatch --dependency=afterok:$finetuned_job jobs/cluster_centroids_first_language_country_min5_pairs_balanced_base_960h.sh
+```
+
+Min10 all-speaker:
+
+```bash
+base_job=$(sbatch --parsable jobs/run_probes_first_language_country_min10_pairs_base.sh)
+finetuned_job=$(sbatch --parsable jobs/run_probes_first_language_country_min10_pairs_base_960h.sh)
+sbatch --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_first_language_country_min10_pairs.sh
+sbatch --dependency=afterok:$base_job jobs/cluster_centroids_first_language_country_min10_pairs_base.sh
+sbatch --dependency=afterok:$finetuned_job jobs/cluster_centroids_first_language_country_min10_pairs_base_960h.sh
+```
+
+Min10 balanced-sex:
+
+```bash
+base_job=$(sbatch --parsable jobs/run_probes_first_language_country_min10_pairs_balanced_base.sh)
+finetuned_job=$(sbatch --parsable jobs/run_probes_first_language_country_min10_pairs_balanced_base_960h.sh)
+sbatch --dependency=afterok:$base_job:$finetuned_job jobs/plot_probe_comparison_first_language_country_min10_pairs_balanced.sh
+sbatch --dependency=afterok:$base_job jobs/cluster_centroids_first_language_country_min10_pairs_balanced_base.sh
+sbatch --dependency=afterok:$finetuned_job jobs/cluster_centroids_first_language_country_min10_pairs_balanced_base_960h.sh
 ```
 
 Min15 all-speaker:
@@ -671,6 +769,8 @@ The current outputs are:
 ```text
 outputs/analysis/first_language_country_min5_pairs/
 outputs/analysis/first_language_country_min5_pairs_balanced_sex/
+outputs/analysis/first_language_country_min10_pairs/
+outputs/analysis/first_language_country_min10_pairs_balanced_sex/
 outputs/analysis/first_language_country_min15_pairs/
 outputs/analysis/first_language_country_min15_pairs_balanced_sex/
 ```
@@ -689,8 +789,8 @@ The clean story is:
 Suggested poster figures:
 
 1. Dataset and pipeline diagram.
-2. Layer-wise macro F1 for min5 and min15 all-speaker.
-3. Layer-wise macro F1 for min15 balanced-sex.
+2. Layer-wise macro F1 for min5, min10, and min15 all-speaker.
+3. Layer-wise macro F1 for min10 and min15 balanced-sex.
 4. Best-layer confusion matrix.
 5. Centroid distance heatmap or dendrogram.
 
@@ -708,8 +808,10 @@ The strongest results are patterns that appear across:
 
 ```text
 min5 all-speaker
+min10 all-speaker
+min10 balanced-sex
 min15 all-speaker
 min15 balanced-sex
 ```
 
-Treat min5 balanced-sex cautiously because it has only 10 examples per label.
+Treat min5 balanced-sex cautiously because it has only 10 examples per label. The min10 balanced-sex run is the middle-ground robustness check with 20 examples per label.

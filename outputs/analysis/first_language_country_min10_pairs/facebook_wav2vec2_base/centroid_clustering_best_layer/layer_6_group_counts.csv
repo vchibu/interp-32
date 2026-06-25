@@ -1,0 +1,15 @@
+label,n_examples,n_female,n_male
+english__usa,432,219,213
+mandarin__china,94,66,28
+english__uk,71,24,47
+arabic__saudi arabia,55,22,33
+english__canada,46,18,28
+english__australia,43,20,23
+korean__south korea,39,23,16
+russian__russia,33,16,17
+portuguese__brazil,31,14,17
+turkish__turkey,29,10,19
+polish__poland,28,10,18
+cantonese__china,22,12,10
+french__france,22,11,11
+german__germany,22,10,12
