@@ -1,0 +1,450 @@
+country_of_origin,accent_group,total_speakers,female_speakers,male_speakers,unknown_sex_speakers,is_english_speaking_country,no_residency_speakers,one_year_residency_speakers,two_year_residency_speakers,three_year_residency_speakers
+usa,english,432,219,213,0,True,0,0,0,0
+china,mandarin,137,91,46,0,False,26,21,13,6
+south korea,korean,97,61,36,0,False,6,6,7,2
+uk,english,71,24,47,0,True,0,0,0,0
+brazil,portuguese,58,32,26,0,False,13,7,1,4
+russia,russian,54,32,22,0,False,19,3,2,1
+canada,english,46,18,28,0,True,0,0,0,0
+japan,japanese,44,28,16,0,False,4,1,1,1
+saudi arabia,najdi,44,22,22,0,False,3,2,6,5
+australia,english,43,20,23,0,True,0,0,0,0
+turkey,turkish,42,16,26,0,False,14,3,0,2
+poland,polish,39,18,21,0,False,18,3,3,0
+vietnam,vietnamese,39,17,22,0,False,1,1,5,1
+italy,italian,38,13,25,0,False,9,2,0,1
+france,french,36,21,15,0,False,7,5,2,2
+china,cantonese,35,21,14,0,False,9,2,3,0
+germany,german,35,22,13,0,False,6,2,2,0
+iran,persian,33,20,13,0,False,2,1,1,3
+colombia,spanish,32,20,12,0,False,1,1,2,2
+india,hindi-urdu,31,14,17,0,False,1,6,1,0
+saudi arabia,arabic,31,14,17,0,False,1,10,3,2
+el salvador,spanish,29,17,12,0,False,0,0,1,0
+belgium,dutch,27,20,7,0,False,23,1,0,0
+ethiopia,amharic,27,14,13,0,False,0,3,3,3
+macedonia,macedonian,27,17,10,0,False,22,0,1,0
+mexico,spanish,26,11,15,0,False,5,0,1,0
+netherlands,dutch,24,10,14,0,False,6,0,0,2
+philippines,tagalog,24,16,8,0,False,1,1,1,0
+thailand,thai,23,14,9,0,False,5,3,1,0
+pakistan,urdu,22,7,15,0,False,0,1,1,1
+saudi arabia,hijazi,22,5,17,0,False,2,2,1,0
+bolivia,spanish,20,5,15,0,False,0,0,1,1
+bulgaria,bulgarian,20,9,11,0,False,2,1,1,0
+peru,spanish,20,13,7,0,False,1,1,0,0
+nepal,nepali,18,10,8,0,False,0,1,1,3
+romania,romanian,18,9,9,0,False,3,2,1,0
+spain,spanish,18,6,12,0,False,4,0,0,0
+sweden,swedish,18,7,11,0,False,9,2,0,1
+estonia,estonian,17,12,5,0,False,8,1,1,0
+india,gujarati,16,9,7,0,False,0,1,2,0
+bangladesh,bengali,15,8,7,0,False,0,1,0,1
+taiwan,mandarin,15,8,7,0,False,3,2,1,0
+canada,french,14,5,9,0,True,0,0,0,0
+finland,finnish,14,12,2,0,False,2,0,0,1
+india,telugu,14,2,12,0,False,0,0,1,1
+serbia,serbian,14,4,10,0,False,3,0,3,0
+tajikistan,tajiki,14,8,6,0,False,13,0,0,0
+ukraine,ukrainian,14,8,6,0,False,4,0,1,3
+venezuela,spanish,14,5,9,0,False,2,0,1,1
+puerto rico,spanish,13,8,5,0,False,0,0,1,0
+afghanistan,dari,12,7,5,0,False,0,1,0,0
+argentina,spanish,12,5,7,0,False,5,1,0,0
+bosnia and herzegovina,bosnian,12,6,6,0,False,1,0,1,0
+egypt,arabic,12,4,8,0,False,0,0,1,1
+indonesia,bahasa indonesia,12,4,8,0,False,0,0,0,0
+iraq,arabic,12,5,7,0,False,0,0,1,2
+ireland,english,12,2,10,0,True,0,0,0,0
+morocco,arabic,12,4,8,0,False,2,0,1,1
+taiwan,taiwanese,12,8,4,0,False,0,0,0,0
+dominican republic,spanish,11,6,5,0,False,0,0,1,0
+greece,greek,11,6,5,0,False,2,0,1,0
+hungary,hungarian,11,9,2,0,False,3,0,2,0
+india,marathi,11,5,6,0,False,0,1,0,1
+india,tamil,11,9,2,0,False,0,1,1,2
+israel,hebrew,11,4,7,0,False,4,0,0,1
+nicaragua,miskito,11,3,8,0,False,10,0,0,0
+czech republic,czech,10,6,4,0,False,2,0,0,0
+lebanon,arabic,10,7,3,0,False,1,2,0,1
+sri lanka,sinhala,10,7,3,0,False,0,0,0,0
+ukraine,russian,10,7,3,0,False,2,0,1,0
+denmark,danish,9,6,3,0,False,3,0,0,0
+nigeria,hausa,9,2,7,0,False,1,0,0,0
+switzerland,swiss german,9,5,4,0,False,0,1,1,0
+afghanistan,pashto,8,5,3,0,False,0,1,0,0
+albania,albanian,8,3,5,0,False,0,0,0,0
+austria,german,8,5,3,0,False,2,0,0,0
+cambodia,khmer,8,1,7,0,False,0,0,0,1
+chile,spanish,8,2,6,0,False,1,1,0,0
+india,kannada,8,2,6,0,False,0,0,1,0
+india,panjabi,8,1,7,0,False,0,0,1,1
+lithuania,lithuanian,8,7,1,0,False,2,0,1,1
+new zealand,english,8,4,4,0,True,0,0,0,0
+eritrea,tigrigna,7,4,3,0,False,0,0,0,1
+ghana,twi,7,4,3,0,False,0,0,1,0
+haiti,haitian creole french,7,2,5,0,False,0,2,0,0
+india,malayalam,7,4,3,0,False,2,0,0,0
+israel,arabic,7,4,3,0,False,0,0,0,0
+mongolia,khalkha mongol,7,4,3,0,False,0,1,0,2
+nigeria,yoruba,7,3,4,0,False,0,1,0,0
+norway,norwegian,7,3,4,0,False,2,0,0,0
+somalia,somali,7,4,3,0,False,0,0,0,0
+united arab emirates,arabic,7,4,3,0,False,3,1,0,0
+china,uyghur,6,3,3,0,False,0,0,1,2
+china,wu,6,3,3,0,False,1,2,0,0
+ghana,ga,6,3,3,0,False,0,1,0,0
+honduras,spanish,6,3,3,0,False,1,0,0,0
+jamaica,english,6,4,2,0,False,0,0,0,0
+jordan,arabic,6,3,3,0,False,0,0,0,0
+kosovo,albanian,6,4,2,0,False,0,0,0,1
+kuwait,arabic,6,4,2,0,False,1,1,0,0
+nicaragua,spanish,6,2,4,0,False,4,0,0,0
+senegal,wolof,6,3,3,0,False,2,0,0,0
+sierra leone,krio,6,4,2,0,False,0,0,0,0
+south africa,afrikaans,6,1,5,0,False,0,0,0,0
+tanzania,kiswahili,6,3,3,0,False,0,0,0,0
+angola,portuguese,5,2,3,0,False,0,2,0,1
+cameroon,french,5,5,0,0,False,0,0,0,0
+china,xiang,5,2,3,0,False,1,2,1,0
+croatia,croatian,5,3,2,0,False,1,1,0,0
+cuba,spanish,5,3,2,0,False,0,0,0,0
+ecuador,spanish,5,3,2,0,False,0,2,0,0
+finland,swedish,5,2,3,0,False,0,0,0,0
+india,bengali,5,2,3,0,False,1,0,1,0
+kenya,kikuyu,5,2,3,0,False,0,0,0,0
+malaysia,malay,5,3,2,0,False,0,0,0,1
+portugal,portuguese,5,3,2,0,False,2,0,1,0
+republic of georgia,georgian,5,2,3,0,False,0,1,1,2
+singapore,english,5,2,3,0,False,0,0,0,0
+armenia,armenian,4,4,0,0,False,0,1,0,0
+belgium,french,4,2,2,0,False,3,0,0,0
+belgium,vlaams,4,3,1,0,False,4,0,0,0
+democratic republic of congo,french,4,2,2,0,False,1,0,1,0
+india,konkani,4,2,2,0,False,0,0,0,0
+iraq,kurdi,4,1,3,0,False,0,1,0,0
+iraq,kurdish,4,2,2,0,False,0,0,0,0
+ivory coast,french,4,3,1,0,False,0,0,1,0
+jamaica,jamaican creole english,4,1,3,0,False,0,0,0,0
+kazakhstan,kazakh,4,2,2,0,False,1,0,0,0
+kazakhstan,russian,4,3,1,0,False,1,0,0,0
+kenya,kiswahili,4,2,2,0,False,0,1,0,0
+mali,bamanankan,4,3,1,0,False,0,1,1,0
+moldova,romanian,4,3,1,0,False,1,0,1,0
+nicaragua,nicaragua creole english,4,0,4,0,False,4,0,0,0
+nigeria,igbo,4,1,3,0,False,0,0,0,0
+pakistan,panjabi,4,1,3,0,False,0,0,1,0
+panama,spanish,4,3,1,0,False,0,0,0,0
+south africa,english,4,1,3,0,False,0,0,0,0
+spain,catalan,4,2,2,0,False,0,0,0,2
+syria,arabic,4,1,3,0,False,0,0,0,1
+uganda,ganda,4,3,1,0,False,0,0,0,0
+uruguay,spanish,4,1,3,0,False,1,0,0,0
+belarus,belarusan,3,1,2,0,False,2,0,0,0
+belarus,russian,3,1,2,0,False,0,0,0,0
+bosnia and herzegovina,croatian,3,3,0,0,False,1,0,0,0
+bosnia and herzegovina,serbian,3,3,0,0,False,0,0,0,0
+estonia,voro,3,3,0,0,False,1,0,0,0
+ethiopia,kambaata,3,0,3,0,False,0,0,0,0
+ethiopia,oromo,3,2,1,0,False,0,0,0,0
+fiji,fijian,3,2,1,0,False,0,0,0,0
+ghana,ewe,3,1,2,0,False,0,0,0,0
+ghana,fanti,3,2,1,0,False,0,0,0,0
+guatemala,spanish,3,2,1,0,False,0,0,0,0
+iceland,icelandic,3,2,1,0,False,1,0,0,0
+india,english,3,1,2,0,False,0,0,0,0
+india,urdu,3,2,1,0,False,0,0,1,0
+laos,lao,3,2,1,0,False,0,1,0,1
+latvia,latvian,3,3,0,0,False,0,0,0,0
+libya,arabic,3,3,0,0,False,0,0,1,0
+moldova,russian,3,2,1,0,False,1,0,0,0
+nigeria,ibibio,3,1,2,0,False,0,0,0,0
+panama,english,3,2,1,0,False,0,0,0,0
+qatar,arabic,3,0,3,0,False,0,1,1,0
+senegal,pulaar,3,1,2,0,False,2,0,0,0
+slovak republic,slovak,3,3,0,0,False,0,0,0,0
+slovakia,slovak,3,3,0,0,False,0,1,0,0
+sudan,arabic,3,1,2,0,False,0,0,0,0
+switzerland,french,3,1,2,0,False,2,0,0,0
+tibet,tibetan,3,2,1,0,False,0,0,0,0
+tunisia,arabic,3,2,1,0,False,0,0,0,0
+usa,hijazi,3,2,1,0,True,0,0,0,0
+usa,spanish,3,3,0,0,True,0,0,0,0
+usa,yupik,3,2,1,0,True,0,0,0,0
+uzbekistan,uzbek,3,2,1,0,False,0,1,0,0
+zimbabwe,shona,3,2,1,0,False,0,1,0,0
+afghanistan,eastern farsi,2,0,2,0,False,0,0,0,0
+algeria,french,2,1,1,0,False,1,0,0,0
+azerbaijan,azerbaijani,2,0,2,0,False,0,0,1,0
+azerbaijan,azeri turk,2,1,1,0,False,0,1,1,0
+bangladesh,bangla,2,1,1,0,False,0,1,0,0
+belgium,flemish,2,1,1,0,False,1,0,0,0
+botswana,setswana,2,1,1,0,False,0,0,0,0
+cameroon,ngemba,2,1,1,0,False,0,0,0,1
+canada,yiddish,2,1,1,0,True,0,0,0,0
+china,hakka,2,2,0,0,False,1,1,0,0
+costa rica,spanish,2,0,2,0,False,1,0,0,0
+curacao,papiamentu,2,1,1,0,False,0,0,0,0
+cyprus,greek,2,0,2,0,False,0,0,0,0
+ethiopia,hadiyya,2,0,2,0,False,0,0,0,0
+ethiopia,tigrigna,2,2,0,0,False,0,0,0,0
+federated states of micronesia,satawalese,2,1,1,0,False,0,0,0,0
+fiji,rotuman,2,1,1,0,False,0,0,0,0
+germany,bavarian,2,2,0,0,False,0,0,0,0
+germany,turkish,2,1,1,0,False,1,0,1,0
+guyana,english,2,2,0,0,False,0,0,0,0
+india,hindi,2,1,1,0,False,1,0,0,0
+india,oriya,2,0,2,0,False,1,0,0,1
+iran,armenian,2,1,1,0,False,0,0,0,1
+iran,"azerbaijani, south",2,1,1,0,False,0,0,0,2
+kenya,dholuo,2,1,1,0,False,0,0,1,0
+kenya,gusii,2,0,2,0,False,0,0,0,0
+kyrgystan,kirghiz,2,2,0,0,False,0,0,0,0
+laos,hmong,2,0,2,0,False,0,0,0,0
+latvia,russian,2,1,1,0,False,0,0,0,0
+liberia,liberian english,2,2,0,0,False,0,0,0,0
+madagascar,malagasy,2,0,2,0,False,0,0,1,0
+malaysia,english,2,2,0,0,False,0,0,0,0
+malta,maltese,2,2,0,0,False,1,0,0,0
+mauritius,morisyen,2,0,2,0,False,0,0,0,0
+morocco,amazigh,2,0,2,0,False,0,0,0,0
+myanmar,burmese,2,1,1,0,False,0,0,0,0
+pakistan,pashto,2,2,0,0,False,0,0,0,0
+philippines,english,2,1,1,0,False,0,0,0,0
+philippines,filipino,2,1,1,0,False,0,0,1,0
+philippines,hiligaynon,2,2,0,0,False,0,0,0,0
+romania,hungarian,2,1,1,0,False,0,1,0,0
+sierra leone,mende,2,1,1,0,False,0,0,0,1
+slovenia,slovenian,2,1,1,0,False,0,0,0,0
+spain,basque,2,1,1,0,False,0,0,0,0
+sri lanka,tamil,2,1,1,0,False,0,0,0,0
+sudan,bari,2,0,2,0,False,0,0,0,0
+turkmenistan,turkmen,2,1,1,0,False,0,1,0,0
+uk,arabic,2,1,1,0,True,0,0,0,0
+usa,american sign language,2,1,1,0,True,0,0,0,0
+usa,arabic,2,2,0,0,True,0,0,0,0
+usa,greek,2,1,1,0,True,0,0,0,0
+usa,mandarin,2,0,2,0,True,0,0,0,0
+usa,urdu,2,2,0,0,True,0,0,0,0
+yemen,arabic,2,1,1,0,False,0,0,2,0
+afghanistan,uzbek,1,1,0,0,False,0,0,0,0
+albania,greek,1,1,0,0,False,0,0,0,0
+algeria,arabic,1,0,1,0,False,0,0,0,1
+algeria,kabyle,1,1,0,0,False,1,0,0,0
+andorra,french,1,0,1,0,False,1,0,0,0
+angola,kikongo,1,0,1,0,False,0,0,0,0
+antigua and barbuda,english,1,1,0,0,False,0,0,0,0
+australia,khmer,1,1,0,0,True,0,0,0,0
+austria,yiddish,1,1,0,0,False,0,0,0,0
+azerbaijan,russian,1,1,0,0,False,0,0,0,0
+bahrain,arabic,1,0,1,0,False,0,0,0,0
+bangladesh,chittagonian,1,0,1,0,False,0,0,0,0
+bangladesh,sylheti,1,0,1,0,False,0,0,0,0
+barbados,english,1,0,1,0,False,0,0,0,0
+belize,english,1,0,1,0,False,0,0,0,0
+belize,garifuna,1,1,0,0,False,1,0,0,0
+benin,yoruba,1,0,1,0,False,0,0,0,0
+bolivia,english,1,1,0,0,False,0,0,0,0
+bolivia,quechua,1,1,0,0,False,0,0,0,0
+bosnia,serbian,1,1,0,0,False,0,1,0,0
+botswana,ikalanga,1,0,1,0,False,0,0,0,0
+bulgaria,khalkha mongol,1,0,1,0,False,0,0,0,0
+burkina faso,french,1,0,1,0,False,0,0,0,0
+burkina faso,moore,1,1,0,0,False,0,0,0,0
+burundi,kirundi,1,0,1,0,False,0,0,0,0
+cameroon,bafang,1,0,1,0,False,0,0,0,0
+cameroon,bamun,1,1,0,0,False,0,0,1,0
+cameroon,bayangi,1,0,1,0,False,0,0,0,0
+cameroon,cameroon creole english,1,0,1,0,False,0,0,0,0
+cameroon,fefe,1,0,1,0,False,0,0,0,0
+canada,finnish,1,0,1,0,True,0,0,0,0
+chad,sarua,1,0,1,0,False,0,0,0,0
+chile,catalan,1,1,0,0,False,0,0,0,0
+china,bai,1,1,0,0,False,1,0,0,0
+china,gan,1,0,1,0,False,0,0,0,0
+china,min nan,1,0,1,0,False,0,0,1,0
+china,mongolian,1,0,1,0,False,0,0,0,0
+china,naxi,1,1,0,0,False,0,1,0,0
+china,taishan,1,0,1,0,False,0,0,0,0
+china,teochew,1,1,0,0,False,0,0,0,0
+china,tibetan,1,0,1,0,False,0,1,0,0
+democratic republic of congo,kiswahili,1,0,1,0,False,0,1,0,0
+democratic republic of congo,lingala,1,0,1,0,False,0,0,0,0
+democratic republic of the congo,luba-kasai,1,0,1,0,False,0,0,0,0
+el salvadore,spanish,1,1,0,0,False,0,0,0,0
+equatorial guinea,fang,1,1,0,0,False,0,1,0,0
+estonia,russian,1,0,1,0,False,0,0,0,0
+ethiopia,gedeo,1,0,1,0,False,0,0,0,0
+ethiopia,tigre,1,1,0,0,False,0,0,0,0
+faroe islands,faroese,1,0,1,0,False,1,0,0,0
+federated states of micronesia,lamotrekese,1,0,1,0,False,0,0,0,0
+federated states of micronesia,mortlockese,1,0,1,0,False,0,0,0,1
+federated states of micronesia,pohnpeian,1,0,1,0,False,0,0,0,0
+federated states of micronesia,yapese,1,1,0,0,False,0,0,0,0
+fiji,english,1,1,0,0,False,0,0,0,0
+france,yiddish,1,0,1,0,False,0,0,0,0
+gabon,french,1,1,0,0,False,0,1,0,0
+germany,english,1,0,1,0,False,0,0,0,0
+germany,italian,1,0,1,0,False,0,0,0,0
+germany,persian,1,1,0,0,False,0,0,0,0
+germany,russian,1,0,1,0,False,1,0,0,0
+ghana,ashanti,1,1,0,0,False,0,0,0,0
+ghana,english,1,0,1,0,False,0,0,0,0
+ghana,wali,1,0,1,0,False,0,0,0,0
+guinea,baga,1,0,1,0,False,0,0,1,0
+guinea,susu,1,0,1,0,False,0,1,0,0
+haiti,french,1,1,0,0,False,0,0,0,0
+honduras,garifuna,1,0,1,0,False,0,0,0,0
+india,home sign,1,0,1,0,False,0,0,0,0
+india,poonchi,1,0,1,0,False,0,1,0,0
+india,tibetan,1,1,0,0,False,0,0,0,0
+indonesia,arabic,1,0,1,0,False,0,0,0,0
+indonesia,indonesian,1,1,0,0,False,0,0,0,0
+indonesia,lamaholot,1,0,1,0,False,0,0,0,0
+indonesia,sunda,1,1,0,0,False,0,0,0,0
+indonesia,sundanese,1,0,1,0,False,1,0,0,0
+indonesian,indonesian,1,1,0,0,False,1,0,0,0
+indonesisa,javanese,1,0,1,0,False,0,0,0,0
+iran,kurdish,1,0,1,0,False,1,0,0,0
+iraq,chaldean,1,1,0,0,False,0,0,0,0
+iraq,chaldean neo aramaic,1,0,1,0,False,0,0,0,0
+iraq,kurmanji,1,0,1,0,False,0,0,0,0
+iraq,persian,1,0,1,0,False,1,0,0,0
+ireland,gujarati,1,1,0,0,True,0,0,0,0
+ireland,irish,1,0,1,0,True,0,0,0,0
+isle of man,english,1,1,0,0,False,0,0,0,0
+israel,greek,1,1,0,0,False,0,0,0,0
+israel (occupied territory),arabic,1,0,1,0,False,0,0,0,0
+italy,english,1,0,1,0,False,0,0,0,0
+ivory coast,agni,1,0,1,0,False,0,0,0,0
+ivory coast,twi,1,1,0,0,False,0,0,0,0
+kenya,kamba,1,1,0,0,False,0,0,0,0
+kenya,luo,1,1,0,0,False,0,0,0,0
+kenya,nandi,1,0,1,0,False,0,0,0,0
+kuwait,urdu,1,0,1,0,False,0,0,0,0
+kyrgyzstan,kirghiz,1,1,0,0,False,0,0,1,0
+kyrgyzstan,russian,1,1,0,0,False,0,0,1,0
+lebanon,english,1,1,0,0,False,0,0,0,0
+lesotho,sesotho,1,1,0,0,False,0,0,0,0
+liberia,english,1,1,0,0,False,0,0,0,0
+liberia,klao,1,1,0,0,False,0,0,0,0
+liberia,mende,1,0,1,0,False,0,0,0,0
+liechtenstein,german,1,1,0,0,False,0,0,0,0
+lithuania,yiddish,1,1,0,0,False,0,0,0,0
+luxembourg,luxembourgeois,1,1,0,0,False,0,0,0,0
+malawi,chichewa,1,0,1,0,False,0,0,0,0
+malawi,tumbuka,1,1,0,0,False,0,0,0,0
+malaysia,bahasa melayu,1,0,1,0,False,1,0,0,0
+malaysia,korean,1,1,0,0,False,0,0,0,0
+malaysia,mandarin,1,1,0,0,False,0,0,0,0
+martinique,french,1,0,1,0,False,1,0,0,0
+mauritius,mauritian,1,0,1,0,False,0,0,0,0
+mexico,portuguese,1,0,1,0,False,0,0,0,0
+montenegro,montenegrin,1,1,0,0,False,0,1,0,0
+morocco,darija,1,1,0,0,False,0,0,0,1
+morocco,french,1,1,0,0,False,0,0,0,0
+myanmar,"chin, mizo",1,0,1,0,False,0,0,0,0
+myanmar,shan,1,1,0,0,False,1,0,0,0
+namibia,nama,1,0,1,0,False,0,0,0,0
+nepal,newar,1,0,1,0,False,0,0,0,0
+netherlands,frisian,1,0,1,0,False,0,0,0,0
+new york,english,1,1,0,0,False,0,0,0,0
+niger,hausa,1,1,0,0,False,0,0,0,0
+nigeria,ebira,1,0,1,0,False,0,0,0,0
+nigeria,edo,1,0,1,0,False,0,0,0,0
+nigeria,english,1,1,0,0,False,0,0,0,0
+nigeria,fulani,1,0,1,0,False,0,0,0,0
+nigeria,kanuri,1,1,0,0,False,0,0,0,0
+northern mariana islands,carolinian,1,1,0,0,False,0,0,0,0
+northern mariana islands,chamorro,1,0,1,0,False,0,0,0,0
+oman,omani arabic,1,1,0,0,False,0,0,0,0
+pakistan,english,1,1,0,0,False,0,0,0,0
+pakistan,french,1,1,0,0,False,0,0,0,1
+pakistan,hindko,1,0,1,0,False,0,0,0,0
+pakistan,pahari,1,0,1,0,False,0,0,0,1
+pakistan,sindhi,1,0,1,0,False,0,0,0,0
+palestine,arabic,1,0,1,0,False,0,0,0,0
+papua new guinea,english,1,0,1,0,False,0,0,0,0
+papua new guinea,pidgin english,1,0,1,0,False,0,0,0,0
+paraguay,spanish,1,0,1,0,False,0,0,0,0
+peru,castellano,1,0,1,0,False,0,0,0,0
+peru,quechua,1,1,0,0,False,0,0,0,0
+philippines,bisayan,1,1,0,0,False,0,0,0,0
+philippines,cebuano,1,1,0,0,False,0,0,0,0
+philippines,gaddang,1,0,1,0,False,0,0,0,0
+philippines,japanese,1,1,0,0,False,0,0,0,0
+philippines,masbatenyo,1,1,0,0,False,0,0,0,0
+philippiness,tagalog,1,1,0,0,False,0,0,0,0
+portugal,french,1,1,0,0,False,0,0,0,0
+republic of georgia,armenian,1,1,0,0,False,0,0,0,0
+romanian,romanian,1,0,1,0,False,0,0,0,0
+russia,armenian,1,0,1,0,False,1,0,0,0
+russia,khalkha mongol,1,0,1,0,False,0,0,0,0
+russia,ossetic,1,1,0,0,False,1,0,0,0
+russia,tatar,1,1,0,0,False,0,0,0,0
+russia,yakut,1,1,0,0,False,1,0,0,0
+rwanda,kinyarwanda,1,0,1,0,False,0,0,0,0
+senegal,balant,1,0,1,0,False,1,0,0,0
+senegal,bamanankan,1,0,1,0,False,1,0,0,0
+senegal,djola,1,0,1,0,False,1,0,0,0
+senegal,french,1,0,1,0,False,0,0,0,0
+senegal,khasonke,1,1,0,0,False,1,0,0,0
+senegal,mancagne,1,0,1,0,False,1,0,0,0
+senegal,mandingue,1,0,1,0,False,1,0,0,0
+senegal,serer,1,0,1,0,False,1,0,0,0
+sicily,sicilian,1,0,1,0,False,0,0,0,0
+sierra leone,mandingo,1,0,1,0,False,0,0,0,0
+sierra leone,temne,1,0,1,0,False,0,0,0,0
+singapore,hainanese,1,0,1,0,False,0,1,0,0
+singapore,mandarin,1,0,1,0,False,0,0,0,0
+solomon islands,tagalog,1,1,0,0,False,0,0,0,1
+south africa,northern sotho,1,1,0,0,False,0,0,0,0
+south korea,dutch,1,1,0,0,False,1,0,0,0
+spain,english,1,0,1,0,False,0,0,0,0
+spain,valencian,1,1,0,0,False,0,0,0,0
+sudan,dinka,1,0,1,0,False,0,0,0,0
+sudan,nuer,1,0,1,0,False,0,0,0,0
+sudan,shilluk,1,0,1,0,False,0,0,0,0
+switzerland,english,1,0,1,0,False,0,0,0,0
+switzerland,german,1,0,1,0,False,0,0,0,0
+switzerland,italian,1,1,0,0,False,0,0,0,0
+switzerland,sardinian,1,1,0,0,False,0,0,0,0
+taiwan,hakka,1,1,0,0,False,0,0,0,0
+taiwan,xiang,1,1,0,0,False,0,0,0,0
+tajikistan,turkish,1,0,1,0,False,1,0,0,0
+tajikistan,uzbek,1,0,1,0,False,1,0,0,0
+the bahamas,english,1,1,0,0,False,0,0,0,0
+timor-leste,fataluku,1,0,1,0,False,0,0,0,0
+timor-leste,tetum,1,1,0,0,False,0,0,0,0
+togo,french,1,1,0,0,False,0,0,0,0
+togo,ife,1,0,1,0,False,0,0,0,0
+togo,moba,1,0,1,0,False,0,0,0,0
+trinidad,english,1,1,0,0,False,0,0,0,0
+tunisia,french,1,0,1,0,False,0,0,0,0
+uk,portuguese,1,0,1,0,True,0,0,0,0
+ukraine,romanian,1,1,0,0,False,0,0,0,0
+united arab emirates,english,1,1,0,0,False,0,0,0,0
+united arab emirates,malayalam,1,1,0,0,False,1,0,0,0
+united arab emirates,somali,1,1,0,0,False,0,0,0,0
+united arab emirates,urdu,1,1,0,0,False,0,0,0,0
+us virgin islands,english,1,0,1,0,False,0,0,0,0
+usa,bengali,1,1,0,0,True,0,0,0,0
+usa,french,1,0,1,0,True,0,0,0,0
+usa,hindi-urdu,1,0,1,0,True,0,0,0,0
+usa,kannada,1,1,0,0,True,0,0,0,0
+usa,kikongo,1,0,1,0,True,0,0,0,0
+usa,korean,1,0,1,0,True,0,0,0,0
+usa,persian,1,1,0,0,True,0,0,0,0
+usa,russian,1,1,0,0,True,0,0,0,0
+usa,tagalog,1,0,1,0,True,0,0,0,0
+usa,telugu,1,1,0,0,True,0,0,0,0
+usa,twi,1,0,1,0,True,0,0,0,0
+usa,yiddish,1,0,1,0,True,0,0,0,0
+uzbekistan,russian,1,1,0,0,False,0,0,0,0
+vietnam,cantonese,1,0,1,0,False,0,0,0,0
+vietnamese,vietnamese,1,1,0,0,False,0,0,0,0
+virginia,english,1,0,1,0,False,0,0,0,0
+zambia,bengali,1,1,0,0,False,0,0,0,0
+zimbabwe,french,1,1,0,0,False,0,1,0,0
+zimbabwe,ndebele,1,1,0,0,False,0,0,0,0
+zimbabwe,zulu,1,1,0,0,False,0,0,0,0
