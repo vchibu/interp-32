@@ -22,6 +22,14 @@ TITLECASE_EXCEPTIONS = {
     "usa": "USA",
 }
 
+PLOT_LABEL_FONTSIZE = 14
+PLOT_TITLE_FONTSIZE = 17
+PLOT_AXIS_FONTSIZE = 15
+PLOT_TICK_FONTSIZE = 14
+HEATMAP_LABEL_FONTSIZE = 30
+HEATMAP_TITLE_FONTSIZE = 36
+HEATMAP_TICK_FONTSIZE = 30
+
 
 @dataclass(frozen=True)
 class CentroidClusteringResult:
@@ -184,25 +192,26 @@ def plot_distance_heatmap(
     ordered = distance_matrix.iloc[ordered_indices, ordered_indices]
     ordered_labels = [format_accent_country_label(labels[idx]) for idx in ordered_indices]
 
-    size = max(8.5, 0.7 * len(ordered_labels) + 3.0)
+    size = max(19.0, 1.35 * len(ordered_labels) + 3.0)
     fig, ax = plt.subplots(figsize=(size, size))
     image = ax.imshow(
         ordered.to_numpy(dtype=float),
-        cmap="YlGnBu",
+        cmap="RdYlBu_r",
         vmin=0.0,
         vmax=float(np.nanmax(ordered.to_numpy(dtype=float))),
     )
     ax.set_xticks(np.arange(len(ordered_labels)))
     ax.set_yticks(np.arange(len(ordered_labels)))
-    ax.set_xticklabels(ordered_labels, rotation=45, ha="right", fontsize=10)
-    ax.set_yticklabels(ordered_labels, fontsize=10)
+    ax.set_xticklabels(ordered_labels, rotation=45, ha="right", fontsize=HEATMAP_TICK_FONTSIZE)
+    ax.set_yticklabels(ordered_labels, fontsize=HEATMAP_TICK_FONTSIZE)
     ax.set_xticks(np.arange(-0.5, len(ordered_labels), 1), minor=True)
     ax.set_yticks(np.arange(-0.5, len(ordered_labels), 1), minor=True)
     ax.grid(which="minor", color="white", linestyle="-", linewidth=0.8)
     ax.tick_params(which="minor", bottom=False, left=False)
-    ax.set_title(title or "Centroid cosine distance")
+    ax.set_title(title or "Centroid cosine distance", fontsize=HEATMAP_TITLE_FONTSIZE)
     colorbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
-    colorbar.set_label("Cosine distance: lighter = closer, darker = farther", fontsize=10)
+    colorbar.set_label("Cosine distance: blue = closer, red = farther", fontsize=HEATMAP_LABEL_FONTSIZE)
+    colorbar.ax.tick_params(labelsize=HEATMAP_TICK_FONTSIZE)
     fig.tight_layout()
     fig.savefig(path, dpi=180)
     plt.close(fig)
@@ -242,15 +251,16 @@ def plot_centroid_pca(
     values = centroids.drop(columns=["label"]).to_numpy(dtype=float)
     coords = PCA(n_components=2, random_state=42).fit_transform(values)
 
-    fig, ax = plt.subplots(figsize=(12.0, 8.0))
+    fig, ax = plt.subplots(figsize=(13.5, 9.0))
     ax.scatter(coords[:, 0], coords[:, 1], s=70, color="#1f77b4", zorder=3)
     _set_padded_limits(ax, coords)
     ax.axhline(0, color="#dddddd", linewidth=1)
     ax.axvline(0, color="#dddddd", linewidth=1)
     _place_pca_labels(ax, labels, coords)
-    ax.set_xlabel("PC1")
-    ax.set_ylabel("PC2")
-    ax.set_title(title or "Centroid PCA")
+    ax.set_xlabel("PC1", fontsize=PLOT_AXIS_FONTSIZE)
+    ax.set_ylabel("PC2", fontsize=PLOT_AXIS_FONTSIZE)
+    ax.tick_params(axis="both", labelsize=PLOT_TICK_FONTSIZE)
+    ax.set_title(title or "Centroid PCA", fontsize=PLOT_TITLE_FONTSIZE)
     fig.tight_layout()
     fig.savefig(path, dpi=180)
     plt.close(fig)
@@ -311,26 +321,26 @@ def _label_offset_candidates(point: np.ndarray, center: np.ndarray) -> list[tupl
     x_sign = 1 if direction[0] >= 0 else -1
     y_sign = 1 if direction[1] >= 0 else -1
     outward = [
-        (x_sign * 74, y_sign * 34),
-        (x_sign * 92, 0),
-        (x_sign * 74, -y_sign * 34),
-        (0, y_sign * 44),
-        (x_sign * 116, y_sign * 48),
-        (x_sign * 116, -y_sign * 48),
-        (-x_sign * 74, y_sign * 34),
-        (-x_sign * 92, 0),
-        (-x_sign * 74, -y_sign * 34),
-        (0, -y_sign * 44),
+        (x_sign * 96, y_sign * 44),
+        (x_sign * 120, 0),
+        (x_sign * 96, -y_sign * 44),
+        (0, y_sign * 58),
+        (x_sign * 150, y_sign * 64),
+        (x_sign * 150, -y_sign * 64),
+        (-x_sign * 96, y_sign * 44),
+        (-x_sign * 120, 0),
+        (-x_sign * 96, -y_sign * 44),
+        (0, -y_sign * 58),
     ]
     wider_search = [
-        (130, 62),
-        (130, -62),
-        (-130, 62),
-        (-130, -62),
-        (0, 70),
-        (0, -70),
-        (160, 0),
-        (-160, 0),
+        (170, 82),
+        (170, -82),
+        (-170, 82),
+        (-170, -82),
+        (0, 92),
+        (0, -92),
+        (210, 0),
+        (-210, 0),
     ]
     return outward + wider_search
 
@@ -346,7 +356,7 @@ def _make_pca_annotation(
         xy=(point[0], point[1]),
         xytext=offset,
         textcoords="offset points",
-        fontsize=10,
+        fontsize=PLOT_LABEL_FONTSIZE,
         ha="center",
         va="center",
         arrowprops={"arrowstyle": "-", "color": "#888888", "lw": 0.7, "shrinkA": 4, "shrinkB": 6},

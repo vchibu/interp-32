@@ -1,0 +1,15 @@
+label,n_examples,n_female,n_male
+arabic__saudi arabia,20,10,10
+cantonese__china,20,10,10
+english__australia,20,10,10
+english__canada,20,10,10
+english__uk,20,10,10
+english__usa,20,10,10
+french__france,20,10,10
+german__germany,20,10,10
+korean__south korea,20,10,10
+mandarin__china,20,10,10
+polish__poland,20,10,10
+portuguese__brazil,20,10,10
+russian__russia,20,10,10
+turkish__turkey,20,10,10
