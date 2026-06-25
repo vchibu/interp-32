@@ -1,0 +1,15 @@
+accent_country_label,n_examples,included
+arabic__saudi arabia,20,True
+cantonese__china,20,True
+english__australia,20,True
+english__canada,20,True
+english__uk,20,True
+english__usa,20,True
+french__france,20,True
+german__germany,20,True
+korean__south korea,20,True
+mandarin__china,20,True
+polish__poland,20,True
+portuguese__brazil,20,True
+russian__russia,20,True
+turkish__turkey,20,True

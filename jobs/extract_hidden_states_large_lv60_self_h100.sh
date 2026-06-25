@@ -17,4 +17,6 @@ source .venv/bin/activate
 export PYTHONUNBUFFERED=1
 
 python -m src.cli extract-hidden-states \
-  --model-name facebook/wav2vec2-large-lv60-self
+  --model-name facebook/wav2vec2-large-lv60 \
+  --feature-index-path data/manifests/feature_index_facebook_wav2vec2_large_lv60_self.csv \
+  --feature-dir outputs/features/facebook_wav2vec2_large_lv60_self

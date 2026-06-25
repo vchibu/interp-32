@@ -16,7 +16,8 @@ export PYTHONUNBUFFERED=1
 export MPLCONFIGDIR=/tmp/matplotlib-$USER
 
 python -m src.cli run-probes \
-  --model-name facebook/wav2vec2-large-lv60-self \
+  --model-name facebook/wav2vec2-large-lv60 \
+  --feature-index-path data/manifests/feature_index_facebook_wav2vec2_large_lv60_self.csv \
   --analysis-dir outputs/analysis/first_language_country_min10_pairs_balanced_sex/facebook_wav2vec2_large_lv60_self \
   --accent-country-filter \
   --min-balanced-sex-pairs 10 \

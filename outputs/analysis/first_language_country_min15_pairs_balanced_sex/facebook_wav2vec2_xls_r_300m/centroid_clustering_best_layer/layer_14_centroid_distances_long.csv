@@ -1,0 +1,29 @@
+label_a,label_b,distance
+english__canada,english__usa,0.0008555348991695633
+english__australia,english__usa,0.0014169839143763907
+english__australia,english__uk,0.0015785487690287425
+english__canada,english__uk,0.0016296569884417522
+english__australia,english__canada,0.0017784470857081791
+english__uk,english__usa,0.0021582523548693278
+korean__south korea,russian__russia,0.002464418751601971
+mandarin__china,russian__russia,0.0026900856354884484
+korean__south korea,mandarin__china,0.002783363612180789
+arabic__saudi arabia,russian__russia,0.0036816026097621357
+arabic__saudi arabia,korean__south korea,0.004318158259049909
+arabic__saudi arabia,mandarin__china,0.004435777997076729
+english__uk,russian__russia,0.005028322612973479
+english__australia,korean__south korea,0.005626344559814034
+english__uk,korean__south korea,0.005926374389117028
+english__australia,russian__russia,0.005940207713875156
+english__usa,russian__russia,0.007830300754382957
+english__canada,russian__russia,0.007979296188304619
+english__uk,mandarin__china,0.008440618587284066
+english__usa,korean__south korea,0.008594299979616693
+english__australia,mandarin__china,0.008788836954495172
+english__canada,korean__south korea,0.00904680105449196
+arabic__saudi arabia,english__australia,0.00940936234779799
+arabic__saudi arabia,english__uk,0.009419714323471218
+english__usa,mandarin__china,0.011371967620859458
+arabic__saudi arabia,english__usa,0.011543111437895659
+arabic__saudi arabia,english__canada,0.011928246171084345
+english__canada,mandarin__china,0.012209831337439025

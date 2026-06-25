@@ -1,0 +1,15 @@
+true_label,cantonese__china,english__usa,russian__russia,german__germany,arabic__saudi arabia,polish__poland,portuguese__brazil,english__uk,english__australia,english__canada,turkish__turkey,french__france,korean__south korea,mandarin__china
+cantonese__china,12,1,0,0,0,0,0,0,0,0,1,0,1,5
+english__usa,0,7,0,0,0,0,0,0,2,11,0,0,0,0
+russian__russia,0,0,17,0,1,0,1,0,1,0,0,0,0,0
+german__germany,0,0,1,6,2,1,0,3,0,0,1,6,0,0
+arabic__saudi arabia,0,1,0,0,15,0,1,0,0,0,2,0,0,1
+polish__poland,2,2,1,0,1,10,1,0,0,0,1,0,1,1
+portuguese__brazil,1,0,1,1,1,1,5,0,0,0,1,8,1,0
+english__uk,0,0,0,1,0,0,0,13,2,4,0,0,0,0
+english__australia,0,2,0,1,0,0,0,3,13,1,0,0,0,0
+english__canada,0,11,0,0,0,0,0,0,0,9,0,0,0,0
+turkish__turkey,1,0,0,0,3,1,1,0,0,0,7,4,3,0
+french__france,0,0,0,0,2,1,2,0,0,0,3,12,0,0
+korean__south korea,0,0,1,2,0,0,0,0,0,0,4,0,13,0
+mandarin__china,4,0,4,0,0,0,0,1,0,0,1,0,2,8

@@ -1,0 +1,253 @@
+accent_country_label,n_speakers,n_female,n_male,n_balanced_female_male_pairs,included_by_balanced_sex_pairs
+english__usa,432,219,213,213,True
+mandarin__china,94,66,28,28,True
+english__uk,71,24,47,24,True
+arabic__saudi arabia,55,22,33,22,True
+english__australia,43,20,23,20,True
+english__canada,46,18,28,18,True
+korean__south korea,39,23,16,16,True
+russian__russia,33,16,17,16,True
+portuguese__brazil,31,14,17,14,False
+french__france,22,11,11,11,False
+turkish__turkey,29,10,19,10,False
+polish__poland,28,10,18,10,False
+cantonese__china,22,12,10,10,False
+german__germany,22,10,12,10,False
+japanese__japan,16,8,8,8,False
+dutch__belgium,27,20,7,7,False
+macedonian__macedonia,24,17,7,7,False
+italian__italy,23,7,16,7,False
+hindi__india,18,7,11,7,False
+thai__thailand,15,9,6,6,False
+tajiki__tajikistan,14,8,6,6,False
+estonian__estonia,16,11,5,5,False
+french__canada,14,5,9,5,False
+dutch__netherlands,13,5,8,5,False
+farsi__iran,11,6,5,5,False
+spanish__colombia,11,6,5,5,False
+swedish__sweden,14,4,10,4,False
+mandarin__taiwan,10,4,6,4,False
+bosnian__bosnia and herzegovina,8,4,4,4,False
+english__new zealand,8,4,4,4,False
+miskito__nicaragua,11,3,8,3,False
+vietnamese__vietnam,11,3,8,3,False
+serbian__serbia,10,3,7,3,False
+spanish__spain,10,3,7,3,False
+gujarati__india,8,3,5,3,False
+arabic__morocco,7,4,3,3,False
+greek__greece,7,3,4,3,False
+hebrew__israel,7,3,4,3,False
+romanian__romania,7,3,4,3,False
+amharic__ethiopia,6,3,3,3,False
+arabic__united arab emirates,6,3,3,3,False
+english__ireland,12,2,10,2,False
+finnish__finland,10,8,2,2,False
+telugu__india,10,2,8,2,False
+ukrainian__ukraine,8,2,6,2,False
+spanish__argentina,7,2,5,2,False
+marathi__india,6,2,4,2,False
+czech__czech republic,5,3,2,2,False
+norwegian__norway,5,2,3,2,False
+swiss german__switzerland,5,3,2,2,False
+taiwanese__taiwan,5,3,2,2,False
+bahasa indonesia__indonesia,4,2,2,2,False
+bengali__india,4,2,2,2,False
+kazakh__kazakhstan,4,2,2,2,False
+wu__china,4,2,2,2,False
+xiang__china,4,2,2,2,False
+spanish__mexico,8,1,7,1,False
+spanish__venezuela,8,1,7,1,False
+kannada__india,7,1,6,1,False
+afrikaans__south africa,6,1,5,1,False
+arabic__usa,5,4,1,1,False
+spanish__chile,5,1,4,1,False
+tamil__india,5,4,1,1,False
+bamanankan__mali,4,3,1,1,False
+danish__denmark,4,1,3,1,False
+english__south africa,4,1,3,1,False
+flemish__belgium,4,3,1,1,False
+german__austria,4,3,1,1,False
+khalkha mongol__mongolia,4,1,3,1,False
+russian__ukraine,4,3,1,1,False
+spanish__nicaragua,4,1,3,1,False
+spanish__peru,4,3,1,1,False
+tagalog__philippines,4,3,1,1,False
+arabic__iraq,3,2,1,1,False
+arabic__kuwait,3,2,1,1,False
+arabic__lebanon,3,1,2,1,False
+azerbaijani__azerbaijan,3,1,2,1,False
+catalan__spain,3,2,1,1,False
+croatian__croatia,3,2,1,1,False
+french__belgium,3,1,2,1,False
+haitian creole french__haiti,3,1,2,1,False
+nepali__nepal,3,1,2,1,False
+portuguese__portugal,3,1,2,1,False
+pulaar__senegal,3,1,2,1,False
+swedish__finland,3,1,2,1,False
+wolof__senegal,3,2,1,1,False
+yupik__usa,3,2,1,1,False
+akan__ghana,2,1,1,1,False
+albanian__albania,2,1,1,1,False
+american sign language__usa,2,1,1,1,False
+arabic__uk,2,1,1,1,False
+arabic__yemen,2,1,1,1,False
+dari__afghanistan,2,1,1,1,False
+filipino__philippines,2,1,1,1,False
+french__democratic republic of congo,2,1,1,1,False
+french__switzerland,2,1,1,1,False
+georgian__republic of georgia,2,1,1,1,False
+greek__usa,2,1,1,1,False
+pashto__afghanistan,2,1,1,1,False
+romanian__moldova,2,1,1,1,False
+spanish__dominican republic,2,1,1,1,False
+spanish__ecuador,2,1,1,1,False
+spanish__el salvador,2,1,1,1,False
+spanish__puerto rico,2,1,1,1,False
+turkish__germany,2,1,1,1,False
+turkmen__turkmenistan,2,1,1,1,False
+urdu__india,2,1,1,1,False
+yiddish__canada,2,1,1,1,False
+hungarian__hungary,6,6,0,0,False
+bulgarian__bulgaria,5,0,5,0,False
+lithuanian__lithuania,5,5,0,0,False
+urdu__pakistan,5,0,5,0,False
+nicaragua creole english__nicaragua,4,0,4,0,False
+arabic__qatar,3,0,3,0,False
+croatian__bosnia and herzegovina,3,3,0,0,False
+malayalam__india,3,0,3,0,False
+panjabi__india,3,0,3,0,False
+panjabi__pakistan,3,0,3,0,False
+spanish__usa,3,3,0,0,False
+voro__estonia,3,3,0,0,False
+arabic__egypt,2,0,2,0,False
+arabic__libya,2,2,0,0,False
+armenian__armenia,2,2,0,0,False
+belarusan__belarus,2,0,2,0,False
+bengali__bangladesh,2,0,2,0,False
+french__ivory coast,2,2,0,0,False
+hakka__china,2,2,0,0,False
+kirghiz__kyrgystan,2,2,0,0,False
+kiswahili__tanzania,2,0,2,0,False
+konkani__india,2,0,2,0,False
+kurdi__iraq,2,0,2,0,False
+mandarin__usa,2,0,2,0,False
+mauritian__mauritius,2,0,2,0,False
+portuguese__angola,2,0,2,0,False
+slovak__slovak republic,2,2,0,0,False
+spanish__bolivia,2,0,2,0,False
+spanish__uruguay,2,0,2,0,False
+tibetan__tibet,2,2,0,0,False
+urdu__usa,2,2,0,0,False
+uyghur__china,2,2,0,0,False
+agni__ivory coast,1,0,1,0,False
+akan__ivory coast,1,1,0,0,False
+akan__usa,1,0,1,0,False
+arabic__bahrain,1,0,1,0,False
+arabic__syria,1,0,1,0,False
+armenian__russia,1,0,1,0,False
+baga__guinea,1,0,1,0,False
+bahasa melayu__malaysia,1,0,1,0,False
+bai__china,1,1,0,0,False
+balant__senegal,1,0,1,0,False
+bamanankan__senegal,1,0,1,0,False
+bamun__cameroon,1,1,0,0,False
+bangla__bangladesh,1,1,0,0,False
+bengali__usa,1,1,0,0,False
+bisayan__philippines,1,1,0,0,False
+burmese__myanmar,1,1,0,0,False
+chamorro__northern mariana islands,1,0,1,0,False
+dholuo__kenya,1,0,1,0,False
+djola__senegal,1,0,1,0,False
+dutch__south korea,1,1,0,0,False
+fang__equatorial guinea,1,1,0,0,False
+faroese__faroe islands,1,0,1,0,False
+farsi__iraq,1,0,1,0,False
+farsi__usa,1,1,0,0,False
+finnish__canada,1,0,1,0,False
+french__algeria,1,0,1,0,False
+french__andorra,1,0,1,0,False
+french__cameroon,1,1,0,0,False
+french__gabon,1,1,0,0,False
+french__martinique,1,0,1,0,False
+french__tunisia,1,0,1,0,False
+french__usa,1,0,1,0,False
+french__zimbabwe,1,1,0,0,False
+ga__ghana,1,1,0,0,False
+gaddang__philippines,1,0,1,0,False
+garifuna__belize,1,1,0,0,False
+german__switzerland,1,0,1,0,False
+gujarati__ireland,1,1,0,0,False
+hainanese__singapore,1,0,1,0,False
+hausa__nigeria,1,1,0,0,False
+hiligaynon__philippines,1,1,0,0,False
+hindi__usa,1,0,1,0,False
+hungarian__romania,1,1,0,0,False
+icelandic__iceland,1,0,1,0,False
+igbo__nigeria,1,1,0,0,False
+indonesian__indonesian,1,1,0,0,False
+irish__ireland,1,0,1,0,False
+javanese__indonesisa,1,0,1,0,False
+kabyle__algeria,1,1,0,0,False
+kannada__usa,1,1,0,0,False
+khasonke__senegal,1,1,0,0,False
+khmer__australia,1,1,0,0,False
+kikongo__usa,1,0,1,0,False
+kirghiz__kyrgyzstan,1,1,0,0,False
+kirundi__burundi,1,0,1,0,False
+kiswahili__democratic republic of congo,1,0,1,0,False
+kiswahili__kenya,1,1,0,0,False
+korean__usa,1,0,1,0,False
+kurdish__iran,1,0,1,0,False
+lamaholot__indonesia,1,0,1,0,False
+lao__laos,1,1,0,0,False
+latvian__latvia,1,1,0,0,False
+luba-kasai__democratic republic of the congo,1,0,1,0,False
+malagasy__madagascar,1,0,1,0,False
+malay__malaysia,1,1,0,0,False
+malayalam__united arab emirates,1,1,0,0,False
+maltese__malta,1,1,0,0,False
+mancagne__senegal,1,0,1,0,False
+mandarin__malaysia,1,1,0,0,False
+mandingue__senegal,1,0,1,0,False
+min nan__china,1,0,1,0,False
+mongolian__china,1,0,1,0,False
+montenegrin__montenegro,1,1,0,0,False
+naxi__china,1,1,0,0,False
+northern sotho__south africa,1,1,0,0,False
+oriya__india,1,0,1,0,False
+ossetic__russia,1,1,0,0,False
+pahari__india,1,0,1,0,False
+pohnpeian__federated states of micronesia,1,0,1,0,False
+portuguese__uk,1,0,1,0,False
+russian__estonia,1,0,1,0,False
+russian__germany,1,0,1,0,False
+russian__kazakhstan,1,1,0,0,False
+russian__kyrgyzstan,1,1,0,0,False
+russian__moldova,1,0,1,0,False
+russian__usa,1,1,0,0,False
+sarua__chad,1,0,1,0,False
+serbian__bosnia,1,1,0,0,False
+serbian__bosnia and herzegovina,1,1,0,0,False
+serer__senegal,1,0,1,0,False
+shan__myanmar,1,1,0,0,False
+shona__zimbabwe,1,0,1,0,False
+sindhi__pakistan,1,0,1,0,False
+sinhala__sri lanka,1,1,0,0,False
+slovak__slovakia,1,1,0,0,False
+slovenian__slovenia,1,1,0,0,False
+spanish__costa rica,1,0,1,0,False
+spanish__honduras,1,0,1,0,False
+sundanese__indonesia,1,0,1,0,False
+susu__guinea,1,0,1,0,False
+tagalog__usa,1,0,1,0,False
+telugu__usa,1,1,0,0,False
+tibetan__china,1,0,1,0,False
+tibetan__india,1,1,0,0,False
+turkish__tajikistan,1,0,1,0,False
+urdu__kuwait,1,0,1,0,False
+uzbek__tajikistan,1,0,1,0,False
+uzbek__uzbekistan,1,1,0,0,False
+yakut__russia,1,1,0,0,False
+yiddish__usa,1,0,1,0,False
+yoruba__benin,1,0,1,0,False
+yoruba__nigeria,1,0,1,0,False
