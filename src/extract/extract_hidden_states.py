@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from pathlib import Path
 from typing import Any
 
@@ -9,7 +10,7 @@ import pandas as pd
 import torch
 from tqdm import tqdm
 
-from src.models.load_wav2vec2 import Wav2Vec2Bundle
+from src.models.load_wav2vec2 import SpeechModelBundle
 
 
 def mean_pool(hidden_state: torch.Tensor, attention_mask: torch.Tensor | None) -> torch.Tensor:
@@ -29,11 +30,22 @@ def mean_pool(hidden_state: torch.Tensor, attention_mask: torch.Tensor | None) -
 @torch.inference_mode()
 def extract_utterance_embeddings(
     audio_path: str | Path,
-    bundle: Wav2Vec2Bundle,
+    bundle: SpeechModelBundle,
     sample_rate: int = 16000,
 ) -> dict[str, Any]:
-    """Extract hidden states and pooled layer representations for one file."""
+    """Extract pooled layer representations for one file, per model family."""
     audio, _ = librosa.load(audio_path, sr=sample_rate, mono=True)
+    if bundle.model_type == "whisper":
+        return _extract_whisper(audio_path, audio, bundle, sample_rate)
+    return _extract_wav2vec2(audio_path, audio, bundle, sample_rate)
+
+
+def _extract_wav2vec2(
+    audio_path: str | Path,
+    audio: np.ndarray,
+    bundle: SpeechModelBundle,
+    sample_rate: int,
+) -> dict[str, Any]:
     inputs = bundle.feature_extractor(
         audio,
         sampling_rate=sample_rate,
@@ -60,9 +72,59 @@ def extract_utterance_embeddings(
     }
 
 
+def _valid_frames(num_audio_samples: int, sample_rate: int, total_frames: int, window_seconds: float) -> int:
+    """Number of non-padded frames, since Whisper pads every clip to a fixed window."""
+    frames_per_second = total_frames / window_seconds
+    duration_seconds = num_audio_samples / sample_rate
+    valid = int(math.ceil(duration_seconds * frames_per_second))
+    return max(1, min(total_frames, valid))
+
+
+def _extract_whisper(
+    audio_path: str | Path,
+    audio: np.ndarray,
+    bundle: SpeechModelBundle,
+    sample_rate: int,
+    window_seconds: float = 30.0,
+) -> dict[str, Any]:
+    # Whisper pads/truncates to a fixed 30s log-mel window; pool over valid frames only.
+    inputs = bundle.feature_extractor(
+        audio,
+        sampling_rate=sample_rate,
+        return_tensors="pt",
+    )
+    input_features = inputs["input_features"].to(bundle.device)  # (1, n_mels, mel_frames)
+    outputs = bundle.model(
+        input_features=input_features,
+        output_hidden_states=True,
+        return_dict=True,
+    )
+
+    enc_frames = outputs.last_hidden_state.shape[1]
+    valid_enc = _valid_frames(len(audio), sample_rate, enc_frames, window_seconds)
+    pooled_layers = [
+        layer_hidden[:, :valid_enc, :].mean(dim=1).squeeze(0).cpu().numpy()
+        for layer_hidden in outputs.hidden_states
+    ]
+
+    # Front-end acoustic baseline for Whisper: the raw log-mel input, mean-pooled.
+    # (Whisper's hidden_states[0] is already post-conv-stem, so the mel input is the
+    # truest pre-transformer baseline, analogous to wav2vec2's CNN-output baseline.)
+    mel = input_features.squeeze(0)  # (n_mels, mel_frames)
+    valid_mel = _valid_frames(len(audio), sample_rate, mel.shape[1], window_seconds)
+    pooled_mel = mel[:, :valid_mel].mean(dim=1).cpu().numpy()
+
+    return {
+        "audio_path": str(audio_path),
+        "extract_features": mel.cpu().numpy(),
+        "pooled_hidden_states": np.stack(pooled_layers, axis=0),
+        "pooled_cnn_features": pooled_mel,
+    }
+
+
 def extract_from_manifest(
     manifest: pd.DataFrame,
-    bundle: Wav2Vec2Bundle,
+    bundle: SpeechModelBundle,
     output_dir: str | Path,
     sample_rate: int = 16000,
     save_frame_level: bool = False,
@@ -79,7 +141,7 @@ def extract_from_manifest(
 
         index_row = dict(row)
         index_row["feature_path"] = str(artifact_path)
-        index_row["model_name"] = bundle.model.name_or_path
+        index_row["model_name"] = bundle.model_name
         index_row["sample_rate"] = sample_rate
 
         if artifact_path.exists() and not overwrite:
@@ -99,7 +161,7 @@ def extract_from_manifest(
             "pooled_cnn_features": result["pooled_cnn_features"],
             "audio_path": result["audio_path"],
             "speaker_id": row["speaker_id"],
-            "model_name": bundle.model.name_or_path,
+            "model_name": bundle.model_name,
             "sample_rate": sample_rate,
         }
         if save_frame_level:

@@ -26,7 +26,7 @@ from src.data.download_archive_audio import download_audio_from_metadata
 from src.data.normalize_audio import normalize_from_manifest
 from src.data.scrape_accent_archive import scrape_archive
 from src.extract.extract_hidden_states import extract_from_manifest
-from src.models.load_wav2vec2 import load_wav2vec2
+from src.models.load_wav2vec2 import load_speech_model
 
 
 def _read_csv(path: Path) -> pd.DataFrame:
@@ -259,7 +259,7 @@ def main() -> None:
             else Path(config["paths"]["feature_dir"]) / model_slug
         )
         manifest = _read_csv(input_path)
-        bundle = load_wav2vec2(
+        bundle = load_speech_model(
             model_name=model_name,
             device_name=config["model"]["device"],
         )

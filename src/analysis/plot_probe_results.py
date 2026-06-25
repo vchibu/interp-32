@@ -80,6 +80,7 @@ def plot_probe_comparison(
     output_path: str | Path,
     metric: str = "macro_f1",
     title: str | None = None,
+    show_baselines: bool = True,
 ) -> Path:
     mean_column = f"{metric}_mean"
     std_column = f"{metric}_std"
@@ -91,7 +92,7 @@ def plot_probe_comparison(
         probes = summary[summary["model"].eq("linear_probe")].sort_values("layer")
         if probes.empty:
             continue
-        ax.errorbar(
+        line = ax.errorbar(
             probes["layer"],
             probes[mean_column],
             yerr=probes[std_column] if std_column in probes.columns else None,
@@ -100,9 +101,35 @@ def plot_probe_comparison(
             capsize=3,
             label=label,
         )
+        if show_baselines:
+            # Each model's front-end (CNN / log-mel) probe, in its own colour.
+            cnn = summary[summary["model"].eq("cnn_baseline")]
+            if not cnn.empty:
+                ax.axhline(
+                    float(cnn[mean_column].mean()),
+                    linestyle=":",
+                    linewidth=1.5,
+                    color=line[0].get_color(),
+                    alpha=0.9,
+                    label=f"{label} - front end features",
+                )
+
+    if show_baselines:
+        # Majority chance floor is identical across models for a given subset.
+        for _, summary in summaries:
+            majority = summary[summary["model"].eq("majority")]
+            if not majority.empty:
+                ax.axhline(
+                    float(majority[mean_column].mean()),
+                    linestyle="--",
+                    linewidth=1.3,
+                    color="#7f7f7f",
+                    label="majority baseline",
+                )
+                break
 
     metric_label = METRIC_LABELS.get(metric, metric)
-    ax.set_xlabel("Wav2Vec2 layer")
+    ax.set_xlabel("Encoder layer")
     ax.set_ylabel(metric_label)
     ax.set_title(title or f"Layer-wise probe comparison ({metric_label})")
     ax.set_ylim(bottom=0.0, top=1.0)

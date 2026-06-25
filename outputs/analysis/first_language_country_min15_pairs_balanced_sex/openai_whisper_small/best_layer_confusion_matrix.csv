@@ -1,0 +1,9 @@
+true_label,arabic__saudi arabia,english__uk,korean__south korea,russian__russia,english__canada,english__usa,english__australia,mandarin__china
+arabic__saudi arabia,30,0,0,0,0,0,0,0
+english__uk,0,25,0,1,2,0,2,0
+korean__south korea,0,0,27,0,0,2,0,1
+russian__russia,0,1,0,29,0,0,0,0
+english__canada,0,6,0,0,17,7,0,0
+english__usa,0,0,0,0,9,21,0,0
+english__australia,0,2,0,0,0,0,28,0
+mandarin__china,0,3,0,0,0,0,0,27

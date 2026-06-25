@@ -1,0 +1,9 @@
+label,n_examples,n_female,n_male
+arabic__saudi arabia,30,15,15
+english__australia,30,15,15
+english__canada,30,15,15
+english__uk,30,15,15
+english__usa,30,15,15
+korean__south korea,30,15,15
+mandarin__china,30,15,15
+russian__russia,30,15,15
