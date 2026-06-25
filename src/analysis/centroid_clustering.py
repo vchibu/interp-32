@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+from matplotlib.transforms import Bbox
 import numpy as np
 import pandas as pd
 from scipy.cluster.hierarchy import dendrogram, leaves_list, linkage
@@ -187,7 +188,7 @@ def plot_distance_heatmap(
     fig, ax = plt.subplots(figsize=(size, size))
     image = ax.imshow(
         ordered.to_numpy(dtype=float),
-        cmap="RdYlBu_r",
+        cmap="YlGnBu",
         vmin=0.0,
         vmax=float(np.nanmax(ordered.to_numpy(dtype=float))),
     )
@@ -201,7 +202,7 @@ def plot_distance_heatmap(
     ax.tick_params(which="minor", bottom=False, left=False)
     ax.set_title(title or "Centroid cosine distance")
     colorbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
-    colorbar.set_label("Cosine distance: blue = closer, red = farther", fontsize=10)
+    colorbar.set_label("Cosine distance: lighter = closer, darker = farther", fontsize=10)
     fig.tight_layout()
     fig.savefig(path, dpi=180)
     plt.close(fig)
@@ -241,22 +242,12 @@ def plot_centroid_pca(
     values = centroids.drop(columns=["label"]).to_numpy(dtype=float)
     coords = PCA(n_components=2, random_state=42).fit_transform(values)
 
-    fig, ax = plt.subplots(figsize=(11.0, 7.5))
+    fig, ax = plt.subplots(figsize=(12.0, 8.0))
     ax.scatter(coords[:, 0], coords[:, 1], s=70, color="#1f77b4", zorder=3)
-    label_positions = _repel_label_positions(coords)
-    for label, point, label_pos in zip(labels, coords, label_positions, strict=True):
-        ax.annotate(
-            label,
-            xy=(point[0], point[1]),
-            xytext=(label_pos[0], label_pos[1]),
-            textcoords="data",
-            fontsize=10,
-            arrowprops={"arrowstyle": "-", "color": "#888888", "lw": 0.7},
-            bbox={"boxstyle": "round,pad=0.18", "fc": "white", "ec": "none", "alpha": 0.75},
-            zorder=4,
-        )
+    _set_padded_limits(ax, coords)
     ax.axhline(0, color="#dddddd", linewidth=1)
     ax.axvline(0, color="#dddddd", linewidth=1)
+    _place_pca_labels(ax, labels, coords)
     ax.set_xlabel("PC1")
     ax.set_ylabel("PC2")
     ax.set_title(title or "Centroid PCA")
@@ -266,28 +257,125 @@ def plot_centroid_pca(
     return path
 
 
-def _repel_label_positions(coords: np.ndarray, iterations: int = 250) -> np.ndarray:
-    positions = coords.astype(float).copy()
+def _set_padded_limits(ax: plt.Axes, coords: np.ndarray) -> None:
     x_span = max(float(np.ptp(coords[:, 0])), 1e-6)
     y_span = max(float(np.ptp(coords[:, 1])), 1e-6)
-    min_dx = 0.11 * x_span
-    min_dy = 0.065 * y_span
+    ax.set_xlim(float(np.min(coords[:, 0])) - 0.24 * x_span, float(np.max(coords[:, 0])) + 0.28 * x_span)
+    ax.set_ylim(float(np.min(coords[:, 1])) - 0.20 * y_span, float(np.max(coords[:, 1])) + 0.20 * y_span)
 
-    # Initial small offset so labels do not sit directly on the markers.
-    positions[:, 0] += 0.025 * x_span
-    positions[:, 1] += 0.018 * y_span
 
-    for _ in range(iterations):
-        for i in range(len(positions)):
-            for j in range(i + 1, len(positions)):
-                dx = positions[j, 0] - positions[i, 0]
-                dy = positions[j, 1] - positions[i, 1]
-                if abs(dx) < min_dx and abs(dy) < min_dy:
-                    push_x = 0.5 * (min_dx - abs(dx) + 1e-6) * (1 if dx >= 0 else -1)
-                    push_y = 0.5 * (min_dy - abs(dy) + 1e-6) * (1 if dy >= 0 else -1)
-                    positions[j, 0] += push_x
-                    positions[i, 0] -= push_x
-                    positions[j, 1] += push_y
-                    positions[i, 1] -= push_y
-        positions += 0.01 * (coords - positions)
-    return positions
+def _place_pca_labels(ax: plt.Axes, labels: list[str], coords: np.ndarray) -> None:
+    fig = ax.figure
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+
+    point_boxes = _point_bboxes(ax, coords)
+    placed_boxes: list[Bbox] = []
+    center = coords.mean(axis=0)
+    nearest_neighbor = pairwise_distances(coords)
+    np.fill_diagonal(nearest_neighbor, np.inf)
+    placement_order = np.argsort(nearest_neighbor.min(axis=1))
+
+    for idx in placement_order:
+        label = labels[idx]
+        point = coords[idx]
+        candidates = _label_offset_candidates(point, center)
+        best_annotation = None
+        best_box = None
+        best_score = np.inf
+
+        for offset in candidates:
+            annotation = _make_pca_annotation(ax, label, point, offset)
+            fig.canvas.draw()
+            box = annotation.get_window_extent(renderer).expanded(1.08, 1.18)
+            score = _label_box_score(box, point_boxes, placed_boxes, ax.get_window_extent(renderer))
+            if score < best_score:
+                if best_annotation is not None:
+                    best_annotation.remove()
+                best_annotation = annotation
+                best_box = box
+                best_score = score
+            else:
+                annotation.remove()
+            if score == 0:
+                break
+
+        if best_box is not None:
+            placed_boxes.append(best_box)
+
+
+def _label_offset_candidates(point: np.ndarray, center: np.ndarray) -> list[tuple[int, int]]:
+    direction = point - center
+    if np.linalg.norm(direction) == 0:
+        direction = np.array([1.0, 0.0])
+    x_sign = 1 if direction[0] >= 0 else -1
+    y_sign = 1 if direction[1] >= 0 else -1
+    outward = [
+        (x_sign * 74, y_sign * 34),
+        (x_sign * 92, 0),
+        (x_sign * 74, -y_sign * 34),
+        (0, y_sign * 44),
+        (x_sign * 116, y_sign * 48),
+        (x_sign * 116, -y_sign * 48),
+        (-x_sign * 74, y_sign * 34),
+        (-x_sign * 92, 0),
+        (-x_sign * 74, -y_sign * 34),
+        (0, -y_sign * 44),
+    ]
+    wider_search = [
+        (130, 62),
+        (130, -62),
+        (-130, 62),
+        (-130, -62),
+        (0, 70),
+        (0, -70),
+        (160, 0),
+        (-160, 0),
+    ]
+    return outward + wider_search
+
+
+def _make_pca_annotation(
+    ax: plt.Axes,
+    label: str,
+    point: np.ndarray,
+    offset: tuple[int, int],
+) -> plt.Annotation:
+    return ax.annotate(
+        label,
+        xy=(point[0], point[1]),
+        xytext=offset,
+        textcoords="offset points",
+        fontsize=10,
+        ha="center",
+        va="center",
+        arrowprops={"arrowstyle": "-", "color": "#888888", "lw": 0.7, "shrinkA": 4, "shrinkB": 6},
+        bbox={"boxstyle": "round,pad=0.18", "fc": "white", "ec": "none", "alpha": 0.88},
+        zorder=4,
+    )
+
+
+def _point_bboxes(ax: plt.Axes, coords: np.ndarray, radius_px: float = 10.0) -> list[Bbox]:
+    display_points = ax.transData.transform(coords)
+    return [
+        Bbox.from_extents(x - radius_px, y - radius_px, x + radius_px, y + radius_px)
+        for x, y in display_points
+    ]
+
+
+def _label_box_score(box: Bbox, point_boxes: list[Bbox], placed_boxes: list[Bbox], axes_box: Bbox) -> float:
+    point_overlap = sum(_bbox_overlap_area(box, point_box) for point_box in point_boxes)
+    label_overlap = sum(_bbox_overlap_area(box, placed_box) for placed_box in placed_boxes)
+    outside = (
+        max(0.0, axes_box.x0 - box.x0)
+        + max(0.0, box.x1 - axes_box.x1)
+        + max(0.0, axes_box.y0 - box.y0)
+        + max(0.0, box.y1 - axes_box.y1)
+    )
+    return 1000.0 * point_overlap + 250.0 * label_overlap + 25.0 * outside
+
+
+def _bbox_overlap_area(left: Bbox, right: Bbox) -> float:
+    width = max(0.0, min(left.x1, right.x1) - max(left.x0, right.x0))
+    height = max(0.0, min(left.y1, right.y1) - max(left.y0, right.y0))
+    return width * height
